@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How_dijango_works</title>
+</head>
+<body>
+    <h1>
+        How Django Works
+    </h1>
+
+    Modelo MVT (Medol View Controller)
+
+    Peticion HTTP/ URL 
+    
+    Mapeador URL (ej. urlpatterns)
+        Redirige petición a View adecuada según URL de peticion
+        
+        Lista de funciones path()
+    	Dentro de urls.py
+        1 parametro: URL
+    	2 parametro: Función (View) en modulo View.py
+            urlpatterns = [
+            path("index/", views.index),
+            path("page/", views.page),
+            ]
+    
+    View 
+        Gestiona petición, acceden a modelos necesarios, delegan formato/renderizacion a Templates	
+        Contienen la logica.
+
+        Funciones en Modulo View.py
+    	Recibe objeto HttpRequest Como Parámetro (request)  
+    	Devuelve objeto HttpResponse Como Return  (gral. con la función render())
+    	
+    Templates 
+    	Renderiza/representar pagina
+        Contienen la parte visual (html)
+    	
+        Fichero texto (ej .html)
+        Traida por función render() de la función view.
+
+    Modelo 
+        Acceden/modifica datos en BD	
+    
+        Objetos de python
+    	Class dentro de models.py
+        
+
+    <h3>
+        Bases de datos  
+    </h3> 
+    Soporta nativamente: SQLite
+	Soporta: PostgreSQL, MySQL, Oracle y SQLite
+    
+    <h3>
+        Otras acciones Django:
+    </h3>    
+	formularios (Cuestionario, etc.)
+	Autenticación y permisos de los usuarios
+	Cache (guarda renderización de pag para futuros reingresos)
+	Serialización de datos
+    
+        
+
+    
+
+
+
+
+</body>
+</html>

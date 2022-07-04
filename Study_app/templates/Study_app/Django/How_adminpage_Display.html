@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display en admin</title>
+</head>
+<body>
+    >>>>>>>>>>Override
+    Codigo que modifica como podria verse un modelo en la pagina de administracion
+        Distribuye, agrupa, separa atributos, renombra, etc...           (# Ver todas las acciones disponibles en ModelAdmin)
+        1- Crear clase Override
+            En admin.py
+                class OverrideClass(admin.ModelAdmin):
+                    Accion a realizar
+        2.-Agregar como 2 parametro en registro del modelo
+            En admin.py
+                admin.site.register(Modelo, OverrideClass)      
+
+
+
+    NOMBRE-------------------------------------------------------------------------------
+
+    Cambio nombre, sin modificar nombre atributo.
+        En Modelo:
+            nombre = models.CharField( verbose_name= "Nombre deseado")
+
+
+    DISPLAY------------------------------------------------------------------------------
+
+    Mostrar mas informacion del modelo en pagina admin
+        En admin.py crear clase Override
+            
+            class Override(admin.ModelAdmin):
+                list_display = ("atributo", 'atributo2')
+
+    
+    Ordena el orden como apareceran los atributos            
+            class Override(admin.ModelAdmin):
+                fields = ('Atributo1', 
+                          'Atributo2')
+                
+            
+    Agrupar los atributos en secciones         
+
+            class Override(admin.ModelAdmin):
+                fieldsets = [('NombreSet1', {'fields': ['Atributo1','Atributo2']}),
+                            ('NombreSet2',{'fields': ['Atributo1','Atributo2']})]
+
+
+
+
+
+    SEARCH FIELD------------------------------------------------------------------------
+
+    Campo de Busqueda en un modelo
+        En admin.py crear clase Override
+                
+            class Override(admin.ModelAdmin):
+                search_fields = ("atribut", 'atributo2')   
+    
+
+    Campo de busqueda con modelo con ForeignKey
+        Atributo del Override:   
+            >>> ModeloExterno__Atributo
+                
+            class Override(admin.ModelAdmin):
+                search_fields = ("atribut", 'usuario__nombre') 
+
+    
+    FILTROS-------------------------------------------------------------------------------
+
+    Filtro por categorias
+        En admin.py crear clase Override
+                
+            class Override(admin.ModelAdmin):
+                list_filter = ('atributo',)            {# IMPORTANTE LA COMA AL FINAL#}
+
+    Filtro tiempo especial
+        En admin.py crear clase Override
+                
+            class Override(admin.ModelAdmin):        
+                date_hierarchy= "atributo_date"
+
+
+    IDIOMA--------------------------------------------------------------------------------
+
+    Cambio idioma
+        En Settings.py
+            LANGUAGE_CODE = "Cambiar_al_Deseado"
+
+
+</body>
+</html>
+

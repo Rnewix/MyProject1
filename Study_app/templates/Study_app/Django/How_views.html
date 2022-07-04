@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Views</title>
+</head>
+<body>
+Views
+
+Funciones llamadas por URL especifico, tienen la lógica.
+LLaman y ejecutan Template
+Reciben Httprequest
+Dan Httpresponse como Return.
+
+Actualmente se realiza con shortcut render()
+
+
+1   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    App_views.py
+        from django.shortcuts import render
+        ?from django.http import HttpResponse?????????
+
+        def view(request):
+            return render(request, 'app/template.html', {"Diccionario": opcional})
+
+
+
+
+2   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    Project/Settings.py
+        Colocar direcc de las Templates en TEMPLATES=[]
+        >>>Templates =[   
+            “DIRS”: ["$/template", "$/template2",]  
+            ]
+
+    App_views.py
+        from django.shortcuts import render
+        ?from django.http import HttpResponse?????????
+
+        def view(request):
+            return render(request, 'template.html', {"Diccionario": opcional})
+
+
+
+</body>
+</html>

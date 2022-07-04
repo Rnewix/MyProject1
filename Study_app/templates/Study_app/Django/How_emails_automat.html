@@ -1,0 +1,40 @@
+Establecer Email
+    {# Establecer email backend que enviara automaticamente correos electronicos (GMAIL) #}
+    Settings.py
+        EMAIL_BACKEND="django.core.mail.backends.smtp.EmailBackend"
+        EMAIL_HOST="smtp.gmail.com"
+        EMAIL_USE_TLS=True
+        EMAIL_PORT=587
+        EMAIL_HOST_USER="ElCorreo@gmail.com"
+        EMAIL_HOST_PASSWORD="Contrasenia"
+
+    ####Gmail - Configuracion - Permitir programas de terceros
+    
+Construir la view
+    {#realizar la funcion de envio #}
+    Views.py  
+        from django.core.mail import send_mail          {# funcion para envio de mails#}
+        from django.conf import settings                {# import settings para que views sepa el mail que establecimos#}
+
+        def contact(request):                            
+            info = request.POST                         {# Incluir TODO el request. Sera un diccionario {'clave': info, 'clave': info}#}
+                                                                              
+                        or
+                    
+            subject = request.POST["ID_de_asunto"]      {# incluir en cada variable el contenido del request#}
+            message = request.POST["ID_info1"] + '' + request.POST["ID_info2"]...etc
+
+            email_from = settings.EMAIL_HOST_USER       {# Email establecido en settings #}
+            recipient_list = ['EmailQueReciviraElEmail@mail.com']
+
+            send_mail(subject,                          {# Enviar mail con funcion send_mail}
+                        message, 
+                        email_from, 
+                        recipient_list)
+        
+---------------------------------------------------------------------------
+
+    Corroborar funcionamiento por shell
+    >>>from django.core.mail import send_mail
+    >>>send_mail('Asunto', 'Mensaje', 'EMAILHOSTUSER@email.com', [Destinatario@email.com], fail_silently=False )
+

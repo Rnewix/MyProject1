@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Override</title>
+</head>
+<body>
+    Override
+    
+    
+    
+    Codigo que modifica como podria verse un modelo en la pagina de administracion (#ver adminpage)
+        Distribuye, agrupa, separa atributos, renombra, etc...           
+        (# Ver todas las acciones disponibles en ModelAdmin)
+        
+        
+        1- Crear clase Override
+            En admin.py
+                class OverrideClass(admin.ModelAdmin):
+                    Accion a realizar
+        
+        
+        2.-Agregar como 2 parametro en registro del modelo
+            En admin.py
+                admin.site.register(Modelo, OverrideClass)  
+
+    
+    
+
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario</title>
+</head>
+<body>
+    
+
+
+    >>>>>>>> Contacto - FORMULARIO de contacto 
+    
+    
+        1 Crear Template con Formulario                                         {# Ver HTML Forms #}
+            <form action="/URL_que_recibe_Request" method="POST">{% csrf_token %}
+                                                                                {# csrf_token sirve para decir que es seguro #}
+                <p>Asunto: <input type="text" name="ID_de_asunto"></p>
+                <p>Email: <input type="text" name="ID_de_email"></p>
+                <p>Mensaje: <textarea name="ID_de_mensaje" rows="15" cols="45"></textarea></p>
+                                                                                {# Cuadro para ingresar texto #}
+                <input type="submit" value="LabelEnBoton">                      {# Button #}
+            </form>
+
+
+        2 View
+            from django.core.mail import send_mail
+            from django.conf import settings
+
+                                
+                                        {# View doble funcion: 
+                                            No POST= aplica Ultimo return que llama la template con formulario
+                                            Si hay POST= da return anidado que aplica una accion #}
+            def contact(request):                            
+                if request.method=="POST":
+                    subject= request.POST["ID_de_asunto"]
+                    message= request.POST["ID_de_mensaje"] + '' + request.POST["ID_de_email"]
+
+                    email_from= settings.EMAIL_HOST_USER                              (EMAIL_HOST_USER ver How_email_automat.html)
+                    recipient_list= ["dstinatario@email.com"]
+
+                    send_mail(subject, message, email_from, recipient_list)
+                    return render(request, "Gracia_por_tu_mail.html")
+                else
+                    ...
+                return render(request, "form_contact.html")
+        
+</body>
+</html>

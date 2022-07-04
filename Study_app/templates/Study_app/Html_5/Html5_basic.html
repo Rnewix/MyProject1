@@ -1,0 +1,282 @@
+<!DOCTYPE html>  <!---->
+
+<html lang="en"> <!--indica que doc es html-->
+
+<head>           <!--no aparece, config de pag-->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">   <!--Hace html responsive segun cada pantalla-->
+    
+    <title></title>  <!---->
+
+</head>
+
+
+    <!----------------------------Estructura basica--------------------------------------------->
+    <!DOCTYPE html>                         Raiz para identificar html5
+    <html lang="en">                        Indica que doc es html
+    <head>                                  Config de paginA
+        <meta charset="UTF-8">              
+        <title>Document</title>             Nombre de pestania/usado por buscadores
+    </head>
+    <body></body>                           Contenido de pagina
+    </html>
+
+
+    <!----------------------------Contenido body--------------------------------------------->
+    <h1></h1>                               Titulos/ De h1 a h6 / Usado por buscadores
+    <p></p>                                 Paragraphs/Parrafo
+    <code></code>                           Mostrar codigo
+    <hr/>                                   Linea separacion
+    <br/>                                   Salto linea
+    
+    <!--estructura body-->
+    <div></div>                             Antiguo. Misma funcion que <section></section>
+    <nav></nav>                             Para colocar barra navegacion. Gralmente solo una serie de <a>link</a>)
+    <header></header>                       Para definir parte superior de la pagina. Tiene el <h1></h1>
+    <section></section>                     Separa en Secciones, divide el <body>/ divide <article>.
+    <article></article>                     Define contenido independiente (puede dentro de <section></section>). Tiene gral <h2></h2>
+    <aside></aside>                         Like sidebar (requiere CSS)
+    <footer></footer>                       Para parte inferior, 
+                                                element typically contains:
+                                                        authorship information
+                                                        copyright information
+                                                        contact information
+                                                        sitemap
+                                                        back to top links
+                                                        related documents
+        
+    
+
+
+
+    <!--atributos generales-->
+    id=''           identificador unico
+    class=''        identificador multiple
+    align='center' / 'right' / 'left' / 'justify'
+    style=''
+        font-size: 14px; 
+        font-family: Lato; 
+        color: #000000; 
+        background-color: yellow; 
+        padding: 12px; 
+        margin: 10px; 
+        width: 100px; 
+        border-style: dotted; 
+        border-color: #000000; 
+        border-width: 5px;
+        CSS
+
+    
+
+    <!----------------------------------formato text ---------------------------------->
+    <br/>                                   Salto linea
+    <b>black negrita</b>          
+    <i>cursiva</i>   
+    <u>underline</u>
+    <big>grande</big>
+    <small> pequenio</small>
+    <sub>subindice</sub>
+    <sup>superindice</sup>
+    <q>Entrecomillado</q>
+
+    <span>Texto a modificar</span>           Utilizar style / manipular JS
+
+    <mark>marcado marcador</mark>
+    <strong> text important negrita</strong>
+    <em>text important cursiva</em>
+    <ins>insertado</ins>
+    <del>borrado/texto tachado</del>
+
+    <!--entinty-->
+    Mostrar          Entity Name     or      Entity Number
+    menor que:          &lt;                    &#60;
+    mayor que:          &gt;                    &#62;
+    ""                  &quot;                  &#34;
+    ''                  &apos;                  &#39;
+    copyright           &copy;                  &#169;
+    registered trademark &reg;                  &#174;
+    &                   &amp;                   &#38;
+    á                                           a&#769;
+    etc..
+    <!--simbolos-->
+    https://www.w3schools.com/html/html_symbols.asp
+
+
+
+    <!------------------------------------listas--------------------------------------->
+    <ul>                         unordered list
+        <li></li>                list item
+    </ul>
+
+    <ol>                         ordered list
+        <li></li>                list item
+    </ol>
+    
+    <!--sublistas-->
+    <ul>
+        <li></li>
+        <ol>
+            <li></li>
+        </ol>
+    </ul>
+    
+    <!--atributos-->
+        <ul style="list-style-type: circle;"></ul>
+        <ul style="list-style-type: none;"></ul>
+        <ul style="list-style-type: upper-alpha;"></ul>
+        <ul style="list-style-type: upper-roman;"></ul>
+        <ul style="list-style-image:url(url.jpg);"></ul>
+    
+
+    <!-----------------------------------tabla----------------------------------------->
+    <table></table>
+
+    <table>
+        <thead></thead>             Cabeza de tabla
+        <tbody></tbody>             normal
+        <tfoot></tfoot>             Pie de tabla
+    </table>
+
+        
+    <tr>                            Fila  /Table row
+        <th></th>                   columna titulo = <h1></h1> /justify/black
+    </tr>
+    <tr>
+        <td></td>                   columna normal
+    </tr>
+    
+    <!--atributos-->
+    <table border="1"></table>      Borde
+    <thead bgcolor="yellow"></thead>
+    <td rowspan="2"></td>           Fusiona 2 filas     (vertical)
+    <td colspan="3"></td>           Fusiona 3 columnas  (horizontal)
+
+
+    
+    <!----------------------------------imagen---------------------------------------->
+    <img src="" alt="">
+
+    <img src="url.pgn" alt="text_si_no_img" height="10px" width="100%" border="10px">
+
+    
+    
+    <!----------------------------------Videos---------------------------------------->
+    https://www.w3schools.com/html/html_media.asp
+    
+    Videos
+    https://www.w3schools.com/html/html5_video.asp
+    
+    Youtube
+    https://www.w3schools.com/html/html_youtube.asp
+    
+    <!----------------------------------Audios---------------------------------------->
+    https://www.w3schools.com/html/html_media.asp
+    https://www.w3schools.com/html/html5_audio.asp
+
+
+
+    <!-----------------------------Anchor tag / Enlace-------------------------------->
+    
+    <a href="url.com"></a>                          Abre enlace/ misma pestania
+    
+
+    <a target="_blank" href="url.com"></a>          Abre enlace en nueva pestania
+
+
+    <a href="#id_estiqueta"></a>                     Reenvia a zona misma pagina sin refresh
+
+    <a href="mailto:email@gmail.com">Contacto</a>   Abre cliente de correo del usuario para enviar email al correo escrito.
+
+
+    <a href="url.com">                              Imagen como enlace
+        <img src="url.pgn">  
+    </a>         
+          
+
+
+        
+    <!--------------------------------formulario-------------------------------------->
+    <form></form>
+    <form name="" action="" method=""></form>
+
+    <form   name="nombre"           
+            action="URL"                    A donde envia los datos recabados al presionar botot submit,etc (Urls en server)
+            method="GET / POST">            Metodo GET/POST  (ver diferencias de ambas opciones en internet)
+    </form>
+
+    <!--Input ingreso de informacion-->
+    <input/>                         Cuadro ingreso de datos
+    <input type="text"/>             Cuadro ingreso de datos
+    <input type="password"/>         Cuadro para password/ oculta info en ****
+    <input type="email"/>            Cuadro para email
+    <textarea></textarea>            Cuadrado para ingreso de texto grande
+    <textarea name="" id="" cols="30" rows="10"></textarea>
+
+    <!--Input de Seleccion-->
+    <input type="checkbox" />               Seleccion multiple en cuadro
+    <input type="radio"/>                   Seleccion unica en ciruculo
+    <select name="" id="">                  Seleccion unica entre opciones
+        <option value="">Nombre opcion</option>
+    </select>
+    
+    <!--Botones-->
+    <input type="submit" value="Texto de boton">        Envia todo los datos del formulario al url especificado en form action=""
+    <input type="reset">                                Restaura formulario (a cero)
+    <input type="file">                                 Boton para abrir carpeta para selecionar e ingresa archivo ('seleccionar archivo'). 
+    <!--Botones que aceptan etiquetas anidadas-->
+    <button type="submit"> texto y/o etiquetahtml </button>              
+    <button type="reset">texto</button>                 
+    <button type="button">texto</button>                Funcion manipulable para JS
+    
+
+    <!--Dar texto a cada input-->
+    <label for="id">Texto para campo</label>        for= tendra id del campo input al que seguira
+    <input  id='id'                                 Id del tag
+            name='name'                             Id para servidor. Nombre de variable que contendra info del campo (clave:info)
+            placeholder="ingresa nombre"            Letras tenues en el campo. Se eliminan al ingresar datos.
+            value="valor por defecto"               Valor por defecto
+            type="text"/>
+
+    
+    <!--Ejemplo-->
+    <form name="/formulario/" action="/formulario" method="POST">
+        <label for="nombre">Tu nombre</label>
+        <input id='nombre' name='name' placeholder="ingresa nombre" type="text">
+        <br>
+        <label for="apellido">Tu apellido</label>
+        <input id='apellido' name='last_name' placeholder="ingresa apellido" type="text">
+        <br>
+        <label for="email">Tu nombre</label>
+        <input id='email' name='email' placeholder="email@email.com" type="email">
+        <br>
+        <label for="mensaje">Tu mensaje</label>
+        <textarea name="message" id="mensaje" cols="30" rows="10"></textarea>
+        <br>
+        <button type="submit"><img src="mi_boton.jpg">enviar</button>
+    </form>
+
+
+
+
+
+
+
+    <!--------------------------------------datos importantes---------------------------------------->
+
+    <!--Elementos block (No requieren br)-->
+    <a></a>
+    <img>
+    <code></code>
+    <input>
+    <button></button>
+    Etiquetas de Modificacion de texto
+
+    <!--Elementos inline (Requieren br, sino se mostraran en linea)-->
+    <div></div>
+    <h1></h1>
+    <p></p>
+    Listas <ul></ul>  <ol></ol> <li></li>
+    Tablas <table></table> <tr></tr> <th></th> <td></td>
+    etc.
+

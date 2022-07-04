@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML y logica en TEMPLATES</title>
+</head>
+<body>
+
+1   ! + Tab Te lanzara todo lo necesario de HTML   
+
+2   Variables ==
+         {{variables}}                               uso de variable
+         {% with var='value' %} {% endwith %}        declarar variable en template
+
+3   Logica ==  {% logica %}
+
+        3.1 {% for i in iterable %}
+            {{variables}}
+            {% endfor %}
+
+        3.2 {% if %}
+            {% else %}
+            {% endif %}
+
+
+           {# or / and / not / in #}
+           {# ==, !=, <, >, <=, >= #}
+           ----------------------------------{% if a > b and b > c %}
+           ----------------------------------{% if a == b or c == d and e %}
+           ----------------------------------{% if somevar is not None %}
+           ----------------------------------{% if "hello" in greetings %}
+           https://docs.djangoproject.com/en/4.0/ref/templates/builtins/
+
+
+4   Comentarios == {# el comentario #}
+
+                == {% comment %}
+                    Tu comentario multilinea
+                    {% endcomment %}
+
+5   filtros     Django Buscar template filter
+        {{variable|uper}}
+        {{variable|lower}}
+        {{variable|first|uper}}
+
+
+6   Incrustacion Templates a otras Templates ----- INCLUDE (introducir una template)
+        {% include "plantilla.html" %}
+
+
+7   Herencia de Templates (Al inicio de todo)---- EXTENDS (Heredar desde una plantilla)
+        {% extends "Templ_padre.html" %}
+        
+        {% block title %} {% endblock %}  
+        {% block content%} {% endblock %}  
+
+
+</body>
+</html>

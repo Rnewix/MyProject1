@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    {# Sera Nuestra clase template padre que heredara para crear templates hijas #}
+
+
+
+    <title>
+    {% block title %} 
+                                                                            {# el nombe de cada pagina (En la pestania) #}
+    {% endblock %}                                 
+    </title>
+                                                    
+
+</head>
+
+
+<body>
+    <h1 style="background-color:black; color:beige; text-align:center; padding-top:20px; padding-bottom:20px">My Django Project</h1>  
+    <h3 style="background-color:black; color:beige; text-align:left; padding-top:20px; padding-bottom:20px">Progamed by Carlos Roca</h3>                                   {# Nuestro titulo de pagina #}
+    
+    {% include 'Study_app\My_web\2Barra_Nav_INCLUDE.html' %}            
+                                                                            {# Barra de navegacion #}
+
+    
+    {% block content%} 
+                                                                            {# Contenido escrito en Template hija #}
+    {% endblock %}                                                     
+                                                    
+
+    <p style="background-color:black; color:beige; text-align:left">
+        Copyrigth 2022.  Visit our social media (F)(T)(W)(I)           
+                                                                            {# Nuestro pie de pagina #}
+                                                    
+    </p>
+</body>
+
+
+
+</html>

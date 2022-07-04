@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tu busqueda</title>
+</head>
+<body>
+    <h1>Busqueda de trabajador</h1>
+    <p>Estas buscando a: <strong>{{query}}</strong></p>
+    <p>Resultados encontrados: {{result|length}}</p>
+    <p>Lista de trabajadores</p>
+    <ul>
+        {% for i in result %}
+            <li>
+                {{i.name}} &nbsp; {{i.age}} &nbsp; {{i.job}} 
+            </li>
+        {% endfor %}
+    </ul>
+
+</body>
+</html>

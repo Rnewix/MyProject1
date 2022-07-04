@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pasos Generales</title>
+</head>
+<body>
+        python -m django --version
+
+    •	$ django-admin startproject Project_name                     
+    •	>>> python manage.py startapp App_name              
+    •	>>> python manage.py runserver
+    
+    •	>>> python manage.py makemigrations 
+    •	>>> python manage.py migrate 
+
+
+<h3>Proyecto</h3>
+    Crear proyecto
+    	$ django-admin startproject myproject                     
+    Crear BD
+	    Migration
+    (Opcional) En settings.py 
+        Cambio BD
+	    Cambio Time_zone
+
+    <h3>APP</h3>
+    Crear aplicaciones
+	    manage.py
+    Crear en apps Carpetas y archivos faltantes
+    	urls.py, Mapeador Url, carpeta templates.
+    Registrar apps al proyecto
+    	En settings.py
+        "Appname.apps.AppnameConfig"
+    Conectar Mapeadores URL.
+        URLs apps >>>>> URL proyecto
+	    Include
+	    
+
+    <h3>View</h3>
+    Crear Views
+	    En views.py
+    (opc) Importar Modelos
+	    En views.py
+    Importar Views
+	    En urls.py
+    Crear URL Views
+	    En urls.py
+
+
+    <h3>Templata</h3>
+
+    <h3>Modelo</h3>
+    Crear Modelos
+	    En Models.py 
+    Importar modelos
+	    En admin.py
+    Registrar modelos
+        admin.site.register(Modelo)
+        En admin.py
+    Hacer y Migrar Modelos
+        Makemigratios
+        Migrate
+
+</body>
+</html>

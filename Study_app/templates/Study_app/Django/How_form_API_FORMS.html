@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FORMS API</title>
+</head>
+<body>
+    
+    FORMS API
+
+    Valida automaticamente
+    Simplifica creacion formularios
+
+
+
+
+    En App
+    ----Crear archivo forms.py
+
+        En forms.py
+        Importar forms
+        Crear Una Clase por cada formulario
+            Cada clase debe llevar todos los campos que tendra el formulario, 
+            ya que no se van a escribir sobre en la template (como en el old style)
+
+            
+            from django import forms
+
+            class Forms1(forms.form):                                 
+                atribut1=forms.CharField()                          {# Atributos similares a models.CharField() #}
+                atribut2=forms.EmailField()
+                ...                                                 {# Escribir todo los campos que llevara el formulario
+                                                                    ya que no se escribiran en la template como en el old style#}
+
+            
+            # Metodos de la clase forms (usarse en view)
+            #    .cleaned_data   Informacion formulario como Diccionario
+            #    .as_ul()        Informacion en lista para html            (default en tablas)
+            #    .as_p()         Informacion en parrafos para html
+        
+    ----En view.py
+        Crear vista de formulario {# Vista doble funcion #}
+                                                                    {# View doble funcion: 
+                                                                    No POST= aplica Ultimo return que llama la template con formulario
+                                                                    Si hay POST= da return anidado que aplica una accion #}
+
+            def formulario_web(request):
+                if request.method=="POST":
+                    data= Forms1(request.POST)                        {# Capturar request.post con classe form API en var#}              
+                    
+                    if data.is valid():                               {# Formulario tiene validador integrado#}
+                        data_valid= Forms1.cleaned_data               {# Vuelve lo ingresado a diccionario, cada atributo es una clave#}
+                        ...                                           {# Manipular data como sea necesario#}
+                        ...
+                        ...                                           
+                    ..............................................................................
+                        send_mail(data_valid['asunto'],               {# ejemplo. Recibir correo de formulario de contacto}
+                                data_valid['Mensaje'], 
+                                data_valid.get('email','email_backend'), 
+                                [destinatario@email.com])
+                    .............................................................................
+                        return render(request, "confirmacion_de_envio.html")
+
+                else:                                                 
+                    data= Forms1()                                    {# corre al inicio porque no hay ningun POST}
+                                                                      y se usa para mostrar formulario con la clase FORMS API #}
+
+                return render(request, "form_template.html", {'formulario': data})
+                                                                      {# Pasamos en dic, la clase en var para ser usada en el html #}
+    
+    ----Crear Template
+        <body>
+            <form action="" method="POST"> {% csrf_token%}            {# No olvidar el token para decir que es seguro el POST#}
+                <table>
+                    {{data.as_table}}                                 {# .as_table Metodo clase form #}
+                                                                      {# variable con el formulario de la clase forms}
+                </table>
+                <input type="submit" value="Enviar">
+            </form>
+        </body>
+
+        
+    ---------------------------------------------------------------------
+    RESOLICITAR DATOS INCORRECTOS
+    
+    En body de form_template.html
+
+        {% if forms.errors %}
+        <p style="color:red;"> Revisa este campo</p>
+        {% endif%}
+
+
+        <body>
+
+            {% if forms.errors %}
+            <p style="color:red;"> Revisa este campo</p>
+            {% endif%}
+
+            <form action="" method="POST"> {% csrf_token%}   
+                <table>         
+                    {{data.as_table}}                                                                  
+                </table>
+                <input type="submit" value="Enviar">
+            </form>
+
+        </body>
+
+
+    
+</body>
+</html>

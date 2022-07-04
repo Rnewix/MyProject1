@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIT</title>
+</head>
+<body>
+    
+    Zonas en GIT
+    -Nuestro workspace                                          Nuestro almacenamiento
+    -Staging Area                                               Zona temporal. Podremos seleccionar archivos, visualizar cambios y differencias
+    -Commit                                                     Zona de guardado de GIT. (Guardado como versiones) 
+    -Server                                                     Guardado ya en la nuve (GITHUB, etc.)
+
+
+                            Comandos
+---------------------------------------------------------------------------
+Generales
+---------------------------------------------------------------------------
+
+    git --version                           Ver version de git instalado
+
+    Terminal
+        ls                                  Lista Todos los archivos y carpetas 
+                           
+
+        
+---------------------------------------------------------------------------
+Configuracion
+---------------------------------------------------------------------------
+
+    git config --global user.name "nombre a usar"
+    git config --global user.email email@email
+
+    git config --global core.autocrlf true                        Windows true. Linux/Mac input. CR-Carriage Return LR- Line Feed
+
+    git config --global core.editor "code --wait"                 Seleccionar editor de texto por defecto. (Visual code)
+    git config --global -e                                        Ver la configuracion de GIT
+
+
+---------------------------------------------------------------------------
+Comandos GIT
+---------------------------------------------------------------------------
+
+    git init                                                    Inicia repositorio (crea carpeta .git). Abrir dentro de la carpeta del proyecto 
+    git init NameRepo                                           Inicia nuevo repositorio y Nuevo Projecto
+
+    git add file.py                                             Manda una archivo al Staging Area
+    git add file.html file.py                                   Multiples archivos al Staging Area, solo separar con comas
+    git add .                                                   Manda todo al Staging Area
+    git rm --cached file.py                                     Elimina archivo del Staging Area
+
+    git commit                                                  Abre editor de texto. 1 Primera linea=>agregar comentario del commit. 2 Guardar. 3 Cerrar editor
+    git commit -m "Comentario del commit"                       Commit directo ya con comentario 
+    git commit -am "Comentario del commit"                      git add + git commit -m     (en misma instruccion)
+    git commit --amend                                          Corregir Comentario del commit. (Editor VIM)
+    .                                                               :i   ENTER  Cualquier tecla --> Permite editar
+    .                                                               Suprimir----------------------> Borrar comentario
+    .                                                               Esc---------------------------> Salir (guardando)
+    .                                                               :i   ENTER -------------------> Permite edicion. Escribir comentario
+    .                                                               ENTER  -----------------------> Ingresa
+    .                                                               Esc---------------------------> Salir (guardando)
+    .                                                               :wq---------------------------> Salir de editor y guardar
+
+
+    git reset --hard 0123456                                    Restaurar a una version previa. Requiere Codigo de la version. 
+
+
+    git status                                                  Refleja todos los files y su estado de seguimiento/commit Y la RAMA
+    git status -s                                               Refleja resumidamente estado de las carpetas
+    .                                                                ?? no segimiento   
+    .                                                                RED no seguimiento  
+    .                                                                Green En seguimiento
+    .                                                                A Agregado staging area
+    .                                                                M Modificado
+
+    git log                                                     Listado de todos los commits Q = exit
+    git log --online                                            Listado de todos los Commits (Solo Versiones y sus Codigos de Version) Q = exit
+    git log --graph                                             Listado de las ramas
+
+
+
+    ----------Eliminar/Restaurar file----------------
+        
+        git rm file.hmtl                                            Eliminar Archivo (Como rm de Terminal)
+        git restore file.hmtl                                       Restaurar Archivo recien eliminado
+    
+    
+    ----------Comparaciones--------------------------
+
+        git diff                                                    Muestra todos los cambios de codigos 
+        git diff --stage                                            Muestra todos los cambios en los archivos del Staging Area
+
+
+
+
+---------------------------------------------------------------------------
+Evitar commit accidental de Archivo
+---------------------------------------------------------------------------
+    1 Crear en proyecto archivo con nombre:
+        .gitignore
+    
+    2 Dentro de documento escribir direcciones de archivos/carpetas a ignorar
+
+
+
+
+---------------------------------------------------------------------------
+Ramas
+---------------------------------------------------------------------------
+
+    git branch                                                  Muestra la rama en la que estamos
+    git branch BranchName                                       Crear rama
+    git branch -m BranchName NewBranchName                      Renombrar rama
+    
+    git checkout BranchName                                     Nos mueve a una rama
+    git checkout -b BranchName                                  Crear rama y te mueves a ella
+
+    git branch -d BranchName                                    Eliminar una rama
+    git branch -D BranchName                                    Forzar la eliminación de una rama
+
+    git merge BranchName                                        Mezcla esa rama con la rama en la que estás
+
+
+
+
+
+
+
+
+</body>
+</html>

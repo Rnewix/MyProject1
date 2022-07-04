@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario</title>
+</head>
+<body>
+    
+    Formulario---->Request---->| BD   {# https://docs.djangoproject.com/en/4.0/ref/request-response/ #}
+             K---Response---K
+
+    ---------------------------------------------------------------------
+    PASOS 
+
+    1 Ingreso de datos/busqueda a Formulario
+    2 Rescatar datos/Query de Formulario
+    3 Enviar datos/Query por medio de Request a una View
+    4 def View  Consume el request
+                Obtiene los datos/la Query dentro de Request
+                Decide como ejecutar esos datos/Query
+                Muestra resultado (por medio de Template o Httprequest)         
+    
+    
+    
+    Template con Formulario                                              {# Ver HTML Forms #}
+        <form action="/URL_que_recibe_Request" method='Especificar_method_de_Request: "GET" "POST"'></form>
+                                                                         {#GET vs POST https://www.w3schools.com/tags/ref_httpmethods.asp#}
+            <input type="text" name="ID_de_query">                       {# Cuadro para ingresar texto #}
+            <input type="submit" value="LabelEnBoton">                   {# Button #}
+                
+    
+
+
+    ----------------------------------------------------------------------
+    >>>>>>>> QUERY-GET -FORMULARIO de BUSQUEDA en BD 
+    ---------------------------------------------------------------------
+
+    1 Ingreso de busqueda a Formulario
+    2 Rescatar Query de Formulario
+    3 Enviar Query por medio de Request a una View
+    4 def View  Consume el request
+                Obtiene la Query dentro de Request
+                Decide como ejecutar la busqueda de esa Query en la BD
+                Muestra resultado (por medio de Template o Httprequest)   
+
+    
+        1 Crear Template con Formulario                                      {# Ver HTML Forms #}
+            <form action="/URL_que_recibe_Request" method="GET">
+                <input type="text" name="ID_de_query">                       {# Cuadro para ingresar texto #}
+                <input type="submit" value="LabelEnBoton">                   {# Button #}
+            </form>
+                (1.5.-  Crear View y URL para Template con Formulario )                            
+
+            
+
+        2 Crear URL / View / Template para Request              
+                {# Que Recibe el Request/La Solicitud con la Query/Busqueda#}         
+
+
+        -----View--------------------------------------
+            importar modelos 
+
+            def view(request):
+
+                if request.GET["ID_de_query"]:
+                    
+                    var_query = request.GET["ID_de_query"]                                  {# Recuperar Query #}
+                                                                                    {# Agreg condiciones/rechazar/manipular/etc. la Query}
+                    var_result= Modelo.objects.filter(atributo__icontains = var_query)     {# Definir como hacer la Query solicitada #}
+                                                                                            {# __incontains = SELECT FROM >>LIKE #}
+
+                    return render (request, "template_para_request.html", {"resultado":var_result, "query":var_query})
+                                                                                            {# Resultado se presenta al usuario #}
+                else:
+                    mensaje: 'No has introducudo nada'
+
+                return Httpresponse(Mensaje)
+            
+        ----Template-------------------------------------
+                <p>Estas buscando: <strong>{{query}}</strong></p>
+
+                {% if resultado %}
+                    <p>Resultados: {{resultado|length}}</p>
+                    <ul>
+                        {% for i in resultado %}
+                        <li>
+                            {{i.nombre}}        //Or      {{i.atrib1}} &nbsp; {{i.atrib2}} &nbsp; ETC...   {# &nbsp = Espacio en blanco#}
+                        </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>No se encontraron resultados</p>
+
+                {% endif %}
+                
+    ----------------------------------------------------------------------
+    >>>>>>>> POST - FORMULARIO Ingreso de datos           
+    -----------------------------------------------------------------------
+    
+    Ver API FORMS 
+        Study_app/How_form_API_FORMS.html
+
+    
+    
+    Old style
+        ver: Study_app/ How_form_Old_contact.html
+     
+            
+    
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=\, initial-scale=1.0">
+    <title>GIT HUB</title>
+</head>
+<body>
+    
+    git push                                                    Sube a GitHub todo los commits
+    git push - u origin BranchName                              Sube nueva rama creada y con commits en Git hacia GitHub
+    git push -u origin main
+  
+    git pull                                                    Trae de Github a git cambios presentes solo en GitHub
+
+    git tag NombreTag -m "comentario de Tag"                    Crear tag.     
+    git push tags                                               Sube tag a Github
+
+    git clone https://url.git                                   Clonar repositorio de Github a computadora en la carpeta localizada por Git BASH. 
+    .                                                           URL obtenida desde Github boton Code
+
+    ---------------------------------------------------------------------------
+    Git hub creacion initial
+    -------------------------------------------------------------------------
+
+    Crear nuevo repositorio
+        Click en New
+        Darle un nombre
+        Seleccionar public/Private
+        Click en Create Repository
+
+    Subir nuestro repositorio a GIT HUB
+        Copiar la instruccion: git remote add          
+        Pegarla en la Terminal de Git (Git Bash)                Indica a Git un servidor Remoto.  Agregan la URL del servidor remoto.
+        **Hacer Push                                            Copiar y pegar la instruccion  
+        Escribir usuario                                        Usuario de log in
+        Escribir la key                                         No es contrasenia de login
+            Click en flecha a lado de foto perfil
+            Ir a Settings
+            ir a developer settings 
+            Click Personal access tokens
+            Click Generate new token
+                Note - Escribir nombre
+                Scope - selecionar repo
+                Click Generate token
+    
+    Git push (**)
+    Al crear el repositorio remoto, no hay ramas remotas. Por lo que el primer push crea la primera Rama main remota.
+        git push -u origin main 
+    
+    Cada push solo se sube una rama. POr si queremos seguimiento a otra rama creada en Git, debemos crear la rama en GITHUB.
+    Por lo que nos movemos a la rama y la subimos
+        git checkout BranchName
+        git push - u origin BranchName
+
+
+    ---------------------------------------------------------------------------
+    TAGS
+    ---------------------------------------------------------------------------
+    Da etiquetas. Accesible en la seccion de Tags.
+    Funcion para uso en GitHub para Especificar versiones, etc. y encapsula el codigo para agrega posibilidad de descarga .zip
+    
+        git tag NombreTag -m "comentario de Tag"                    Crear tag.     
+        git push tags                                               Sube tag a Github
+
+
+
+    ---------------------------------------------------------------------------
+    Clone / Fork
+    ---------------------------------------------------------------------------
+
+    Clone
+    Clonar todo el proyecto desde tu repositorio GitHub a tu git en tu computadore
+        Instrucciones:
+            Click en boton verde vCode
+            Copiar Url proporcionado
+            Abrir Git Bash y colocarte en carpeta a clonar
+            git clone https://url.git 
+
+    Fork
+    Clonar todo el proyecto de un repositorio ajeno y colaborar. 
+    Permite realizar PullRequest. Avisar al dev ajeno que puede ver, revisar, comparar, rechazar o finalmente jalar tu version del projecto.
+        Instrucciones:
+            Ingreso a projecto de GitHub externo
+            Click en fork (download instantaneo a tu GitHub)
+            Hacer Clonacion e iniciar su manipulacion
+
+        Hacer PullRequest
+            En projecto click en Pull Request
+            click en New PullRequest
+            click en creat PullRequest
+
+        Aceptar un PullRequest
+            click en Pull Request(1)
+            --REvisar Modificacion click in Files changed(99)
+            --Click REview changes: Chat, opciones (comment(comnetario sin aceptar), approve (merge), request changes)
+
+</body>
+</html>

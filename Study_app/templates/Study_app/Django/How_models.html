@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Models</title>
+</head>
+<body>
+                        Modelos
+Para crear modelos, forzosamente se requiere crear application.
+No pueden crearse directemente en el project.
+Manipular Modelos es manipular BD
+                        
+Crear Modelos
+	    En Models.py 
+    Importar modelos
+    	En admin.py
+    Registrar modelos
+        En admin.py
+	    >>> admin.site.register(Modelo)
+    Hacer y Migrar Modelos
+        En cmd
+        >>> python manage.py makemigrations 
+	    >>> python manage.py migrate 
+
+
+    Migracion con numero de control
+        En cmd
+        >>> python manage.py makemigrations 
+                (rescatar numero de migracion de 4 digitos)
+        >>> python manage.py sqlmigrate APP Num_migracion
+
+
+Ejemplo
+    
+    class Articulo(models.Model):
+        date = models.DateField()
+        name = models.CharField(max_length=200)
+        content = models.TextField()
+
+        def __str__(self):
+            return self.name
+
+    Otros atributos:
+        Numeros:             models.IntegerField(max_length=8)
+        Email validos:       models.EmailField()
+        Booleanos:           models.BooleanField()
+        Info otro modelo:    models.ForeignKey(Model2, on_delete=models.CASCADE)
+        **Dejar en blanco:   models.EmailField(blank=True, null=True)         (hacer que la Opcion no sea requerida/obligatoria)
+        **Cambiar nombre en 
+           pagina de admo    models.CharField(verbose_name= "El Nombre")
+
+
+
+
+
+USO de Shell (Terminal)
+    Inicio de Shell
+        python manage.py shell
+    Importar modelo a trabajar
+        from App.models import Model1
+
+    Salir del Shell
+        >>>exit()
+
+    ---------------------------------------------------------    
+    Crear registro           (= INSERT INTO...)
+        Crear variable
+        >>> var1 = Model1(atributo1="info", atributo2= 90, atributo3= True)
+        >>> var1.save()
+                or
+        >>> var1 = Model1.objects.create(atributos)
+    
+    Modificar registro       (= UPDATE...)
+        >>> var1.atributo = "Nueva_info"
+    
+    
+    Borrar registro          (= DELETE WHERE...)
+        Crear variable extra y conseguir registro
+        >>> var2 = Model1.object.get(name/Id_de_objeto= 'valor')
+        >>> var2.delete()
+    
+    Busqueda de registro     (= SELECT...)
+        >>>Model1.objects.filter(atributo="info")
+        >>>Model1.objects.filter(atributo="info", atributo=89)
+            (Regresara lista de objetos concordantes)
+
+            mayor que = __gte     (precio__gte=100)  (greater than)
+            menor que = __lte     (precio__lte=100)  (lower than)
+            Rango     = __range(10,55)
+            Ordenar   = .order_by("atributo")   
+            Ord descen= .order_by("-atributo")  
+                >>>Model1.objects.filter(precio__gte=100).order_by("precio")
+
+    ---------------------------------------------------------------
+
+
+</body>
+</html>

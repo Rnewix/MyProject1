@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View old style</title>
+</head>
+<body>
+
+>>>>>>Actual>>> Con render (shortcut)
+
+App_views.py
+from django.shortcuts import render
+
+
+>>>>>>>>>>>>  Con loader   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+Project/Settings.py
+    Colocar direcc de las Templates en TEMPLATES=[]
+    >>>Templates =[   
+        “DIRS”: ["$/template", "$/template2",]  
+                ]
+
+App_views.py
+Importar HttpResponse 
+    from django.http import HttpResponse
+Importar Template y loader
+    from django.template import Template
+    from django.template.loader import get_template
+
+Crear vista
+    from django.http import HttpResponse
+    from django.template import Template
+    from django.template.loader import get_template
+
+    def view(request):                               
+        templ= get_template("template.html")                          #Diccionario directo
+        templ_rend = templ.render( {diccionario_de_variablesOpc })    # No requiere Contexto              
+        return HttpResponse(templ_rend)               
+
+
+    
+    
+>>>>>>>>>>>>   Con Objeto Template y Objeto contexto   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+App_view.py
+    from django.http import HttpResponse
+    from django.template import Template, contexto
+
+    def view(request):                               
+        varopen = open("$/xxx/template.html")
+        templ= Template(varopen.read() )
+        varopen.close()
+
+        contx= Context({diccionario_de_variablesOpc})
+        
+        templ_rend = templ.render(contx)                             
+        
+        return HttpResponse(templ_rend)
+
+</body>
+</html>
