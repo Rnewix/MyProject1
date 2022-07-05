@@ -67,26 +67,44 @@ info                            ''    ''
 help                            ''     ''
 
 history                     show given commands historial
-
-id                          Id user (pero feo)
-whoami                      Give user name
-su username                 Change User
-
 file                        Show data about file                 file archive.txt
 
 
 ---------------------------------------------------------------------------
 File text
 ---------------------------------------------------------------------------
-head                        Show first archive's lines
-                                -n 18     (show first 18 lines)
-tail                        show last archive's lines (10lines default)      tail archive.txt 
-                                -n 25     (show last25 lines)
-less                        Open all the archive .txt
+less                        show archive in terminal                       less archive.txt
                                 q - quit
-                                /palabraAbuscar 
-more                        show archive in parts in terminal
+                                -n         Ennumerar lineas
+                                /word      Search word
+                                ?word      Search word (backward)
+        Less is mor faster than more, and have more utilities than cat
+        Cat puede abrir muliples archivos y concatenarlos.
 
+nano                        open & edit archive in terminal               nano archive.txt
+
+
+    Otras opciones lectura
+    ------------------------------------------------------------------------------------
+        head                        Show first archive's lines
+                                        -n 18     (show first 18 lines)
+        tail                        show last archive's lines (10lines default)    tail archive.txt 
+                                        -n 25     (show last25 lines)
+        cat                         show archive in terminal                       cat archive.txt     
+                                        -n         Ennumerar lineas
+                                    show multiple file in terminal    
+                                        cat file.txt file2.txt
+        more                        show archive in parts in terminal              more archive.txt
+                                        -5         (show 5 lines)
+                                        b          go before
+                                        Space      go next
+                                        +18        (show only line number 18)
+                                        /word      Search word
+    
+     Otras opciones de escritura
+    ------------------------------------------------------------------------------------
+        cat > file.txt              Escribir texto
+                                ctrl + d   Termina de escribir
 
 ---------------------------------------------------------------------------
 Short cuts commands
@@ -136,13 +154,6 @@ wildcards                (filtrar en busqueda)
                                 [:lower:]   Minuscula/lowercase
                                 [:upper:]   Mayuscula/uppercase
 
-
-
-
-
----------------------------------------------------------------------------
-nano                        open & edit archive in terminal 
-cat                         show archive for edit in terminal              cat archive.txt
 
 
 

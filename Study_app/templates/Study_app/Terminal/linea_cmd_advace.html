@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>linea comando advace</title>
+</head>
+<body>
+
+    ---------------------------------------------------------------------------
+    Tipo de archivos
+    ---------------------------------------------------------------------------
+        -       File
+        d       Directory
+        l       Link simbolico
+        b       bloque especia (muy raros)
+
+
+    ---------------------------------------------------------------------------
+    Redirecciones                         Curso de introduccion a la terminal 7
+    ---------------------------------------------------------------------------
+                        || Direccion normal
+                        ||
+                        ||   Typing (stdin 0)   -//->   Shell ejecuta comando   -//->    Salida a pantalla stdout 1/stderr 2
+                        ||                                                    
+                        ||    
+                        ||    clave         Significado   Num clave
+                        ||    -----------------------------------------
+                        ||    stdin 0  =    Standar In       0              Los comandos que escribimos
+                        ||    stdout 1 =    Standar OUT      1              El resultado del comando
+                        ||    stderr 2 =    Standar Error    2              Mensaje de error por comando erroneo
+                        ||
+    
+
+        command > File              Escribe output en el File. Si no existe File, es creado. Si File existente, sobreescribe el File.
+        command >> File             Escribe output en File concatenando con lo ya contenido en File. Si no existe File, es creado.
+        command 2> File.txt         Escribe output error en File. Si no existe File, es creado. Si File existente, sobreescribe el File.
+        tee                         Escribe output en el File. Igual a >. (Requiere pipe operator. Ver abajo)
+                                    command | tee file.txt
+    
+                        ||---------------------------------------------------------------------------
+                        ||Ejemplo util
+                        ||---------------------------------------------------------------------------
+                        ||ls Document/ >> file_with_output.txt 2>&1
+                        ||    1 crea list de Document/. Pero Ouput no sale a Shell
+                        ||    2 >> redirige output a "file_with_output.txt"
+                        ||          2.1 List se escribe/concatena 
+                        ||          2.1 Si file "file_with_output.txt" no existe, Se crea
+                        ||    3 2>&1
+                        ||          3.1 Si error, no para el Sheel. 2> redirige el output "stderr 2" a la concatenacion >>
+                        ||          3.1 Si todo bien, redirige como se solicito "stdout 1"
+                        ||
+
+    ---------------------------------------------------------------------------
+    Pipe operator
+    ---------------------------------------------------------------------------
+        command1 | command2                         Redirige output del comando1 como input del comando2
+        command1 | command2 | command3 | command 4         
+    
+
+                        ||---------------------------------------------------------------------------
+                        ||Ejemplo util
+                        ||---------------------------------------------------------------------------
+                        || ls -lh | tee Mylista.txt | less
+                        ||
+                        ||        Proceso                             stdout 1
+                        ||    -----------------------------          ----------
+                        ||    1 hace lista                            lista
+                        ||    2 lista es guardada en archivo          archivo
+                        ||    3 archivo leido con less        ---Puedo buscar y hacer lo que me permita less
+                        ||
+                        || ls -lh Pictures | sort | tee Mylista.txt | less
+                        ||
+
+    ---------------------------------------------------------------------------
+    Operadores de control       Sirven para ejecutar >1 command o encadenarlos
+    ---------------------------------------------------------------------------
+        comd1; comd2; comd3         Ejecuta en orden varios comandos. (tengan o no relacion)(tengan o no error)
+        comd1 & comd2 & comd3       Ejecuta varios comandos de manera asíncrona.
+        comd1 && comd2              Condicional IF. Ejecuta el sig comando Solo si el previo se ejecutó exitosamente
+        com1 || com2 ||com3         Condicional OR. Ejecuta en orden, si no puede va al sig. Se detiene cuando ejecuta un comando 
+                                        y los subesquentes comandos no corren.
+
+                                        
+    ---------------------------------------------------------------------------
+    Permisos de archivo
+    ---------------------------------------------------------------------------
+                        ||Para ver permisos de cada File o directory. Usar ls.
+                        ||
+                        ||  Permisos
+                        ||    r -read
+                        ||    w - write
+                        ||    x - ejecutar
+                        ||
+                        ||  Usuarios      Simbolo    Permisos   P.Binario  P.Octal
+                        ||    User         (u)        - rwx      1 1 1        7
+                        ||    Grup         (g)        - rx       1 0 1        5
+                        ||    World(otros) (o)        - rx       1 0 1        5
+                        ||    All          (a)
+                        ||
+                        ||
+                        ||                            rwx      1 1 1       7
+                        ||                            --------------------------
+                        ||                            x        0 0 1       1
+                        ||                            r        1 0 0       4
+                        ||                            rx       1 0 1       5
+                        ||                            rw       1 1 0       6
+
+        chmod       Cambia permisos.
+                    Manera octal    chmod 755 File
+                                            755 == 1 User/2 Group/3 world
+                    Manera visual   chmod u=rwx File
+                        -   Quita permiso
+                        +   Agrega permiso
+                        =   reescribe los permisos
+                        ,   Modificar multiples usuarios. (no usar espacio despus de ,)
+                                    ej.  chmod u-r,go+w file.txt
+
+    ---------------------------------------------------------------------------
+    Cambios de usuarios
+    ---------------------------------------------------------------------------
+        id                          Id user (muy extenso)
+        whoami                      Give user name
+        su username                 Change User
+
+        sudo command                Realizar acciones con permiso de User master (User ROOT)
+
+                        ||  User ROOT
+                        || -----------------------------------------------
+                        || Usuario master que posee todos los permisos para rwx y para hacer
+                        || instalaciones de apps y programas.
+                        ||
+                        ||  su root   -  cambiar a usuario root
+                        ||  sudo      -  Realizar actividades como root. Da los permisos sin cambio de usuario.
+                        ||
+                        
+        passwd                      Cambiar de contrasena
+</body>
+</html>
