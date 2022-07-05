@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linea comandos</title>
+</head>
+<body>
+    
+---------------------------------------------------------------------------
+Main commands
+---------------------------------------------------------------------------
+
+ls                          List
+                                -l     lista con detalles ord alphabetical
+                                -r     Reverse alphabetical
+                                -t     Ordena por fecha modif
+                                -S     Ord by bigger to smallest
+                                -h     human.+ entendible
+                                -a     (all)qver  ocultos
+                                -t     Ordena por fecha modif
+                                wildcards  Search archive in directory(see before)
+                                
+
+cd                          Change directory
+                                cd ..   Go up                     (absolute route)(relative route)
+
+pwd                         Actual route
+$HOME                       Dislay User's home route
+
+mkdir                       Make directory
+touch                       Make file                     
+                                touch newFile 
+
+cp                          Copy
+                                cp archive.txt archivo_v2.txt
+                                -r     copy directory & archive
+mv                          Move
+                                mv archive.html directory/
+rm                          Delete (remove)
+                                -d     Directory (nothing inside)
+                                -r     Remove directory & archive
+                                -rf    remove force (remove anything selected)
+                                -i     Interactive. Show what is removing and ask permision
+                            
+clear                       Clear Terminal
+(ctrl + l)
+
+(ctrl + c)                  Stop terminal process/loop
+       
+rm                          Rename   
+                                rm archiv.html archivrename.html
+                                rm directory directoryrename
+
+
+
+
+
+
+
+---------------------------------------------------------------------------
+Special commands
+---------------------------------------------------------------------------
+man                         command Manual
+info                            ''    ''
+help                            ''     ''
+
+history                     show given commands historial
+
+id                          Id user (pero feo)
+whoami                      Give user name
+su username                 Change User
+
+file                        Show data about file                 file archive.txt
+
+
+---------------------------------------------------------------------------
+File text
+---------------------------------------------------------------------------
+head                        Show first archive's lines
+                                -n 18     (show first 18 lines)
+tail                        show last archive's lines (10lines default)      tail archive.txt 
+                                -n 25     (show last25 lines)
+less                        Open all the archive .txt
+                                q - quit
+                                /palabraAbuscar 
+more                        show archive in parts in terminal
+
+
+---------------------------------------------------------------------------
+Short cuts commands
+---------------------------------------------------------------------------
+
+xdg-open                    Open archive with default programm
+                                ctrl + c    stop process & can use terminal again
+code .                      Open directory/archive in VSC (Visual Studio Code)
+
+nautilus                    Open in window the actual or especified route
+
+
+alias                       Create a shortcut for some command
+                                alias aliasname=”command”
+
+
+
+---------------------------------------------------------------------------
+APP commands
+---------------------------------------------------------------------------
+sudo                        As a Master User
+sudo apt
+sudo apt install            Install something specified         sudo apt install spotify
+sudo apt-get update         Look for updates
+sudo apt-get upgrade        Install found updates
+
+
+
+---------------------------------------------------------------------------
+wildcards                (filtrar en busqueda)
+---------------------------------------------------------------------------
+
+*                           Todas las posibilidades 
+                                ls *.txt  -- Muestra Cualquier coincid con ".txt" al final
+                                ls data*  -- Muestra cualquier coincidenci "data" al inicio
+?                           Un caracter individual variable
+                                ls data?  -- Solo coincidancia con data + 1 caracter variable
+                                ls da???  -- Solo coincidancia con da + 3 caracteres variables
+[caracter]                  Un caracter individual especific con coincidencia con 1 de los caract especif
+                                ls [01]*  -- Coincidencias con 0 o 1 al inicio
+[!caracter]                 Todo menos lo que contenga al menos 1 de los caractes especificados
+                                ls ?[u]*  -- Coincidencias con u en su 2do caracter
+[[:clase:]]                 Un caracter individual especific con coincidencia con 1 clase   
+                                [:alnum:]   abc or number
+                                [:alpha:]   abc
+                                [:digit:]   number
+                                [:lower:]   Minuscula/lowercase
+                                [:upper:]   Mayuscula/uppercase
+
+
+
+
+
+---------------------------------------------------------------------------
+nano                        open & edit archive in terminal 
+cat                         show archive for edit in terminal              cat archive.txt
+
+
+
+
+
+
+</body>
+</html>
