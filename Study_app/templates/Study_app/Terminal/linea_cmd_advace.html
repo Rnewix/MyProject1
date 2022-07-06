@@ -15,8 +15,14 @@
     3 Pipe operator
     4 Operadores de control 
     5 Redirecciones 
-    6 Alias y variables de entorno       
-    7 Agregar binarios a PATH  
+    6 Alias 
+    7 Busquedas
+    
+    ??? Variables de entorno       
+    ??? Binarios
+    ??????Agregar binarios a PATH  
+    ??? Utilidades de Red
+    ??? Manejo de procesos
 
 
 
@@ -174,10 +180,119 @@
 
 
     ---------------------------------------------------------------------------
-    6 Alias y variables de entorno                           Escrito en .bashrc (Configuración de Bash)
+    6 Alias                                    Escrito en .bashrc (Configuración de Bash)
     ---------------------------------------------------------------------------
                         || 
                         || Alias: nombre que realizara un comando especifico que definamos para ya no tener que escribirlo todo
+                        ||
+    
+        env                         Ver las variables entorno actuales
+        echo $                      Ver variable particular
+
+        
+        Configurar Alias
+        -----------------------------------------------
+            1.- ir a Home
+            2.- code .bashrc
+            3.- Crear/Modificar Alias
+                            
+                                    alias nombre='command'
+    
+
+    ---------------------------------------------------------------------------
+    7 Busquedas
+    ---------------------------------------------------------------------------
+        
+        ls          Busqueda de Files and directory en la ruta actual
+                    Puede usar wildcards
+
+        find        Busqueda de Files and directory total. Agregar ruta desde donde se buscara
+                    Puede usar wildcards
+                        find ./         Busqueda que inicia desde home
+            
+                    -name       Busqueda por Nombre
+                    -iname      Busqueda sin importar mayusculas o minusculas
+                    -type       Busqueda por tipo
+                                    f   Files
+                                    d   Directorios
+                    -size       Busqueda por tamano
+                                    20M   Buscara archivos mayores de 20MB  
+                    -maxdepth:  Número de niveles de profundidad de la búsqueda
+                    -empty:     Busqueda de archivos o directorios vacíos.
+
+                    -perm:      Búsqueda de archivos por permisos.
+                                    -perm 644   Mostrara resultados con permisos (rw r r)
+                    -not:       Resultados que no coinciden con la búsqueda.            
+
+        grep        Busca dentro de un File. 
+                    Acepta EXPRESIONES REGULARES
+                            grep busqueda Fichero(s)
+
+                    -i          Ignora mayusculas o minusculas
+                    -v          Coincidencias que no incluyan el parametro deseado
+                    -c          Numero de coincidencias
+
+                    -s          Evita busqueda en directorios y permiso denegado
+                    -l          Muestra solo ficheros con contenido buscado (no muestra texto)
+
+        wc          Cuenta cantidad de lineas (1), letras (2) y bits(3) de un file    
+                            wc file.txt
+
+                    -l          el numero de líneas
+                    -w          el numero de palabras
+                    -c          el numero de bits
+
+
+
+                ---------------------------------------------------------------------------
+                wildcards                (filtrar en busqueda)
+                ---------------------------------------------------------------------------
+
+                *                           Todas las posibilidades 
+                                                ls *.txt  -- Muestra Cualquier coincid con ".txt" al final
+                                                ls data*  -- Muestra cualquier coincidenci "data" al inicio
+                ?                           Un caracter individual variable
+                                                ls data?  -- Solo coincidancia con data + 1 caracter variable
+                                                ls da???  -- Solo coincidancia con da + 3 caracteres variables
+                [caracter]                  Un caracter individual especific con coincidencia con 1 de los caract especif
+                                                ls [01]*  -- Coincidencias con 0 o 1 al inicio
+                [!caracter]                 Todo menos lo que contenga al menos 1 de los caractes especificados
+                                                ls ?[u]*  -- Coincidencias con u en su 2do caracter
+                [[:clase:]]                 Un caracter individual especific con coincidencia con 1 clase   
+                                                [:alnum:]   abc or number
+                                                [:alpha:]   abc
+                                                [:digit:]   number
+                                                [:lower:]   Minuscula/lowercase
+                                                [:upper:]   Mayuscula/uppercase
+
+
+
+
+
+
+
+
+
+
+
+-----------------------------------------------------------------------------------------------------------------------------------
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+-----------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------------------
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+-----------------------------------------------------------------------------------------------------------------------------------
+
+
+
+    ---------------------------------------------------------------------------
+    ??? Variables de entorno                           Escrito en .bashrc (Configuración de Bash)
+    ---------------------------------------------------------------------------
+                        || 
+                        || 
                         ||
     
         env                         Ver las variables entorno actuales
@@ -192,19 +307,64 @@
             3.- Crear/modificar VARIABLE_DE_ENTORNO              Deben estar Escritas en Mayusculas
                             VARIABLE_DE_ENTORNO=deseado
 
-            3.- Crear/Modificar Alias
-                            alias nombre='command'
     
-
-
     ---------------------------------------------------------------------------
-    7 Agregar binarios a PATH
+    ???? Agregar binarios a PATH
     ---------------------------------------------------------------------------
+                        || Binarios
+                        ||    Programa a ejecutar.
+                        ||
+    Busqueda de ruta de binarios de un programa  (busqueda en todo el PATH)
+        which programa_a_buscar
+
+    
+        Agregar binarios a PATH
         1.- ir a Home
         2.- code .bashrc
         3.- Agregar Nuevos Binarios a PATH (archivos bin)
                         PATH=$PATH:ruta/con/nuevo/bin
 
+
+    ---------------------------------------------------------------------------
+    ???? Utilidades de Red  
+    ---------------------------------------------------------------------------
+                        || 
+                        ||    
+                        ||
+        ifconfig        Sirve para ver la mascara de red, puerto de transmisión, tarjeta de red, etc
+
+        ping            Nos muestra si una ip o pagina, esta activa, si salen paquetes es porque hay conexión.
+        
+        curl pag_web    Podemos traer el html de una pagina, podríamos guardarlo con el estándar output.
+        
+        wget pag_web    Nos descarga el archivo html, pero con formato.
+        
+        traceroute pagwebN  Nos sirve para ver por cuales computadoras tenemos que ir pasando para llegar por ejemplo a una pagina web. Ejemplo, nos saldrán las ip que tenemos que pasar para llegar a la pagina que queremos.
+        
+        netstat -i      Nos muestra los dispositivos de red.
+
+    ---------------------------------------------------------------------------
+    ???? Manejo de procesos  
+    ---------------------------------------------------------------------------
+                        || 
+                        ||   Matar procesos que corren en el sistema 
+                        ||
+        
+        ctrl + c        Finaliza o mata un proceso.
+        ctrl + z        Pausa un proceso        
+                            [#_proceso] + Id_proceso + Donde_se_detuvo
+                              [1] + 40751 suspended (signal) ls -lh
+        fg %#_proceso   Reactiva proceso pausado
+        
+        sleep 10000 &   pondrá un proceso en segundo plano????????????
+        jobs            Ver proceso segundo plano ??????    
+
+        
+        ps
+        kill
+        top
+        htop
+        glanses 
 
 </body>
 </html>
