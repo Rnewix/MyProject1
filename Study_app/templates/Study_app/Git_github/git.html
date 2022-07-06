@@ -8,11 +8,16 @@
 </head>
 <body>
     
+    
+    Repository: Donde se almacena todo el proyecto en git
+    
+    
+    
     Zonas en GIT
-    -Nuestro workspace                                          Nuestro almacenamiento
-    -Staging Area                                               Zona temporal. Podremos seleccionar archivos, visualizar cambios y differencias
-    -Commit                                                     Zona de guardado de GIT. (Guardado como versiones) 
-    -Server                                                     Guardado ya en la nuve (GITHUB, etc.)
+    -Nuestro workspace                                      Nuestro almacenamiento (untracked)
+    -Staging Area                                           Zona temporal (tracked). seleccionar, agregar mas, visualizar differencias de archivos
+    -Commit / Repository                                    Zona de guardado de GIT. (Guardado como versiones) 
+    -Server                                                 uardado ya en la nuve (GITHUB, etc.)
 
 
                             Comandos
@@ -22,23 +27,22 @@ Generales
 
     git --version                           Ver version de git instalado
 
-    Terminal
-        ls                                  Lista Todos los archivos y carpetas 
-                           
+    git --help                              Manual de comandos git                       
 
         
 ---------------------------------------------------------------------------
 Configuracion
 ---------------------------------------------------------------------------
 
-    git config --global user.name "nombre a usar"
-    git config --global user.email email@email
+    git config --global user.name "nombre a usar"                   Cambia o coloca Nombre de usuario (aparecera como autor en los commits)
+    git config --global user.email "email@email"                    Cambia o coloca email de usuario (aparecera en los commits)
 
-    git config --global core.autocrlf true                        Windows true. Linux/Mac input. CR-Carriage Return LR- Line Feed
+    git config --global core.editor "code --wait"                   Seleccionar editor de texto por defecto. (Visual code)
+    git config --global -e                                          Ver la configuracion de GIT
 
-    git config --global core.editor "code --wait"                 Seleccionar editor de texto por defecto. (Visual code)
-    git config --global -e                                        Ver la configuracion de GIT
+    git config --list                                               Muestra la configuracion actual
 
+    (Windows) git config --global core.autocrlf true                Windows true. Linux/Mac input. CR-Carriage Return LR- Line Feed
 
 ---------------------------------------------------------------------------
 Comandos GIT
@@ -50,9 +54,10 @@ Comandos GIT
     git add file.py                                             Manda una archivo al Staging Area
     git add file.html file.py                                   Multiples archivos al Staging Area, solo separar con comas
     git add .                                                   Manda todo al Staging Area
-    git rm --cached file.py                                     Elimina archivo del Staging Area
+    git rm --cached file.py                                     Elimina archivo del Staging Area (IMPORTANTE --cached = Lo add en stage area)
+                                                                        (sino --cached => Sera rm y intentara eliminar el archivo )
 
-    git commit                                                  Abre editor de texto. 1 Primera linea=>agregar comentario del commit. 2 Guardar. 3 Cerrar editor
+    git commit                                                  Abre editor para agregar comentario. Salir Esc + shift + z + z 
     git commit -m "Comentario del commit"                       Commit directo ya con comentario 
     git commit -am "Comentario del commit"                      git add + git commit -m     (en misma instruccion)
     git commit --amend                                          Corregir Comentario del commit. (Editor VIM)
@@ -64,10 +69,6 @@ Comandos GIT
     .                                                               Esc---------------------------> Salir (guardando)
     .                                                               :wq---------------------------> Salir de editor y guardar
 
-
-    git reset --hard 0123456                                    Restaurar a una version previa. Requiere Codigo de la version. 
-
-
     git status                                                  Refleja todos los files y su estado de seguimiento/commit Y la RAMA
     git status -s                                               Refleja resumidamente estado de las carpetas
     .                                                                ?? no segimiento   
@@ -76,33 +77,62 @@ Comandos GIT
     .                                                                A Agregado staging area
     .                                                                M Modificado
 
-    git log                                                     Listado de todos los commits Q = exit
-    git log --online                                            Listado de todos los Commits (Solo Versiones y sus Codigos de Version) Q = exit
+    git log                                                     Listado de todos los commits 
+                                                                    Q = exit
+    git log --stat                                              Listado de todos los commits especificando cantidad de cambios
     git log --graph                                             Listado de las ramas
 
 
+----------Volver en el tiempo ------------------
+    git reset --soft #Commit                                Restaurar a una version previa. Mantiene los add realizados a Staging area. 
+    git reset --hard #Commit                                Restaurar a una version previa. Borra los commits posteriores al commit al que se regreso.    
 
-    ----------Eliminar/Restaurar file----------------
-        
-        git rm file.hmtl                                            Eliminar Archivo (Como rm de Terminal)
-        git restore file.hmtl                                       Restaurar Archivo recien eliminado
+    git checkout #Commit                                    Volver a version previa (para ver o para modificar). No se borran los commits.
+        ||
+        || git checkout master                                     Regresa a la ultima version comiteada
+    
+    git checkout #Commit File.txt                           Volver a version previa de Solo archivo especificado sin modificar otros files.     
+        ||
+        || git checkout master File.txt                             Regresa a la ultima version comiteada de un file
+
+----------Eliminar/Restaurar file----------------
+    
+    git rm file.html                                        Eliminar Archivo 
+                                                                --force     Elimina los archivos de Git y del disco duro
+    git restore file.hmtl                                   Restaurar Archivo recien eliminado
     
     
-    ----------Comparaciones--------------------------
+----------Comparaciones--------------------------
 
-        git diff                                                    Muestra todos los cambios de codigos 
-        git diff --stage                                            Muestra todos los cambios en los archivos del Staging Area
+    git show File.txt                                       Comparando cambios del ultimo commit y su version previa de un archivo
+    
+    git diff #Commit_antiguo #Commit_reciente               Compara cambios de un File entre commits a elegir.
+                                                                    Ver codigos con git log
+    git diff                                                Compara cambios File added in staging, vs same file modif after being added                                                            
+       
+            Lectura de comparaciones
+            -----------------------------
+            1 utlimo commit num/rama
+            2 Autor y fecha
+            3       Comentario
+            4 Diff  a/viejo_file   b/Nuevo_file
+            5 @@ Cantidad de bits cambiados @@
 
-
+            6 Cambios   -blanco = sin cambio
+                        -rojo   = Eliminado o cambiado
+                        -Verde  = Nuevo
 
 
 ---------------------------------------------------------------------------
 Evitar commit accidental de Archivo
 ---------------------------------------------------------------------------
-    1 Crear en proyecto archivo con nombre:
-        .gitignore
-    
-    2 Dentro de documento escribir direcciones de archivos/carpetas a ignorar
+    .gitignore      Evita uardar en git archivos 
+                        (ej. datos de venv, ya que solo funcionan en nuestra pc)
+
+                    Pasos
+                        1 Crear en carpeta del proyecto archivo con nombre .gitignore 
+                        2 Abrirlo (VSC) y escribir rutas de archivos/carpetas a ignorar
+                            (ej.  venv/)
 
 
 
@@ -112,14 +142,15 @@ Ramas
 ---------------------------------------------------------------------------
 
     git branch                                                  Muestra la rama en la que estamos
+    
     git branch BranchName                                       Crear rama
     git branch -m BranchName NewBranchName                      Renombrar rama
+    git branch -d BranchName                                    Eliminar rama
+    git branch -D BranchName                                    Forzar la eliminación de una rama
     
     git checkout BranchName                                     Nos mueve a una rama
     git checkout -b BranchName                                  Crear rama y te mueves a ella
 
-    git branch -d BranchName                                    Eliminar una rama
-    git branch -D BranchName                                    Forzar la eliminación de una rama
 
     git merge BranchName                                        Mezcla esa rama con la rama en la que estás
 
