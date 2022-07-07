@@ -8,16 +8,17 @@
 </head>
 <body>
     
-    
-    Repository: Donde se almacena todo el proyecto en git
+    Directory:              Nuestra proyecto en PC
+    Repository:             Git. Control de versiones en PC
+    Repositorio Remoto:     Git Hub. Nube/Server
     
     
     
     Zonas en GIT
-    -Nuestro workspace                                      Nuestro almacenamiento (untracked)
-    -Staging Area                                           Zona temporal (tracked). seleccionar, agregar mas, visualizar differencias de archivos
-    -Commit / Repository                                    Zona de guardado de GIT. (Guardado como versiones) 
-    -Server                                                 uardado ya en la nuve (GITHUB, etc.)
+    -Directory                                  Nuestro workspace. Nuestro almacenamiento (untracked)
+    -Staging Area                               Zona temporal (tracked). seleccionar, agregar mas, visualizar differencias de archivos
+    -Repository/Commit                          Zona de guardado de GIT. (Guardado como versiones) 
+    -Repositorio Remoto                         Guardado ya en la nuve (GITHUB, etc.)
 
 
                             Comandos
@@ -48,18 +49,18 @@ Configuracion
 Comandos GIT
 ---------------------------------------------------------------------------
 
-    git init                                                    Inicia repositorio (crea carpeta .git). Abrir dentro de la carpeta del proyecto 
-    git init NameRepo                                           Inicia nuevo repositorio y Nuevo Projecto
+    git init                                                    Inicia repositorio local (Git)(crea carpeta .git).
+    git init NameRepo                                           Inicia nuevo repositorio local y Nuevo Projecto
 
     git add file.py                                             Manda una archivo al Staging Area
     git add file.html file.py                                   Multiples archivos al Staging Area, solo separar con comas
     git add .                                                   Manda todo al Staging Area
-    git rm --cached file.py                                     Elimina archivo del Staging Area (IMPORTANTE --cached = Lo add en stage area)
-                                                                        (sino --cached => Sera rm y intentara eliminar el archivo )
+    git rm --cached file.py                                     Elimina archivo del repositorio local (git) y Staging Area. File -> untracked 
+                                                                    
 
-    git commit                                                  Abre editor para agregar comentario. Salir Esc + shift + z + z 
-    git commit -m "Comentario del commit"                       Commit directo ya con comentario 
-    git commit -am "Comentario del commit"                      git add + git commit -m     (en misma instruccion)
+    git commit                                                  File de Staging area a Repositorio local. ///Abre editor para agregar comentario. Salir Esc + shift + z + z 
+    git commit -m "Comentario del commit"                       Commit con comentario. 
+    git commit -am "Comentario del commit"                      git add + git commit -m     (Directorio (PC) -> Repositorio local (Git))
     git commit --amend                                          Corregir Comentario del commit. (Editor VIM)
     .                                                               :i   ENTER  Cualquier tecla --> Permite editar
     .                                                               Suprimir----------------------> Borrar comentario
@@ -79,40 +80,53 @@ Comandos GIT
 
     git log                                                     Listado de todos los commits 
                                                                     Q = exit
+    git log --oneline                                           Listado id commit y comentario del commit.
+    git log --decorate                                          Muestra donde esta el Head
     git log --stat                                              Listado de todos los commits especificando cantidad de cambios
     git log --graph                                             Listado de las ramas
 
 
 ----------Volver en el tiempo ------------------
+------------------------------------------------------------------------
+Posibilidad de volver al futuro.
+------------------------------------------------------------------------
+    git checkout #Commit                                    Volver a version previa (para ver o para modificar). No se borran los commits.
+
+    git checkout #Commit File.txt                           Volver a version previa de Solo 1 archivo especificado sin modificar otros files.     
+        ||
+    git checkout master/main File.txt                       Regresa a la ultima version comiteada de un file (Rama master o main)
+
+------------------------------------------------------------------------
+SIN posibilidad de volver al futuro.
+------------------------------------------------------------------------
     git reset --soft #Commit                                Restaurar a una version previa. Mantiene los add realizados a Staging area. 
     git reset --hard #Commit                                Restaurar a una version previa. Borra los commits posteriores al commit al que se regreso.    
 
-    git checkout #Commit                                    Volver a version previa (para ver o para modificar). No se borran los commits.
-        ||
-        || git checkout master                                     Regresa a la ultima version comiteada
     
-    git checkout #Commit File.txt                           Volver a version previa de Solo archivo especificado sin modificar otros files.     
-        ||
-        || git checkout master File.txt                             Regresa a la ultima version comiteada de un file
+
 
 ----------Eliminar/Restaurar file----------------
+    git reset HEAD file.py                                  Eliminar archivo del Staging Area. File Staging a Unstaged
     
-    git rm file.html                                        Eliminar Archivo 
-                                                                --force     Elimina los archivos de Git y del disco duro
+    git rm --cached file.py                                 Eliminar archivo del repositorio (Git) y Staging Area. File -> untracked 
+    
+    git rm --force file.html                                Eliminar archivo del repositorio (Git), Staging Area y del disco duro
+
     git restore file.hmtl                                   Restaurar Archivo recien eliminado
     
     
 ----------Comparaciones--------------------------
 
-    git show File.txt                                       Comparando cambios del ultimo commit y su version previa de un archivo
+    git show relativ_route/File.txt                         Comparando cambios del ultimo commit y su version previa de un archivo
     
     git diff #Commit_antiguo #Commit_reciente               Compara cambios de un File entre commits a elegir.
                                                                     Ver codigos con git log
-    git diff                                                Compara cambios File added in staging, vs same file modif after being added                                                            
+    git diff                                                Compara cambios File added in staging, vs same file modif after being added  
+    
        
             Lectura de comparaciones
             -----------------------------
-            1 utlimo commit num/rama
+            1 ultimo commit num/rama
             2 Autor y fecha
             3       Comentario
             4 Diff  a/viejo_file   b/Nuevo_file
@@ -138,7 +152,7 @@ Evitar commit accidental de Archivo
 
 
 ---------------------------------------------------------------------------
-Ramas
+Ramas                           HEAD - indica la posicuin de en que rama y commit estamos trabajando
 ---------------------------------------------------------------------------
 
     git branch                                                  Muestra la rama en la que estamos

@@ -7,36 +7,60 @@
     <title>GIT HUB</title>
 </head>
 <body>
+    Directory:              Nuestra proyecto en PC
+    Repository:             Git. Control de versiones en PC
+    Repositorio Remoto:     Git Hub. Nube/Server
+
+
+
+
+    git push                                                Sube commits de Repositio local (git) a Repositorio Remoto (GitHub)
+    git push -u origin BranchName                           Crea nueva rama en github y sube los commits desde Git a esa rama en github 
     
-    git push                                                    Sube a GitHub todo los commits
-    git push -u origin BranchName                              Sube nueva rama creada y con commits en Git hacia GitHub
-    git push -u origin main
-  
-    git pull                                                    Trae de Github a git cambios presentes solo en GitHub
+    git fetch                                               Trae cambios desde Github a repositorio local (git)  (subidos por el equipo o nuestros desde otra pc)
+    git merge                                               Combina cambios descargados a git(repositorio) con nuestro Directorio (PC)
+    git pull                                                Trae cambios desde Github, modifica a git y modifica el Directorio (PC))
+                                                            git fetch + git merge
 
-    git tag NombreTag -m "comentario de Tag"                    Crear tag.     
-    git push tags                                               Sube tag a Github
+    git tag NombreTag -m "comentario de Tag"                Crear tag.     
+    git push tags                                           Sube tag a Github
 
-    git clone https://url.git                                   Clonar repositorio de Github a computadora en la carpeta localizada por Git BASH. 
-    .                                                           URL obtenida desde Github boton Code
+    git clone https://url.git                               Clonar repositorio (en Github) a una computadora (guarda a Git BASH). 
+                                                            URL obtenida desde Github boton Code
+
+
 
     ---------------------------------------------------------------------------
-    Git hub creacion initial
+    Github                   Comenzar a subir de Git (local) a Github (nube) 
     -------------------------------------------------------------------------
 
-    Crear nuevo repositorio
+    Crear nuevo repositorio en GitHub
         Click en New
         Darle un nombre
         Seleccionar public/Private
         Click en Create Repository
 
-    Subir nuestro repositorio a GIT HUB
-        Copiar la instruccion: git remote add          
-        Pegarla en la Terminal de Git (Git Bash)                Indica a Git un servidor Remoto.  Agregan la URL del servidor remoto.
-        **Hacer Push                                            Copiar y pegar la instruccion  
+    Subir repositorio (Git local) a GIT HUB
+        Copiar las instruccions GitHub:                         git remote add          
+        Pegarla en la Terminal                                  (Indica a Git (local) un servidor Remoto (URL del servidor))
+        **Hacer Push                                              
         Escribir usuario                                        Usuario de log in
         
-        Escribir la key                                         No es contrasenia de login
+    ---------------------------------------------------------
+        (**)Git push 
+        Push sube 1 rama por cada push. El primer push crea la 1a Rama remota (main).
+                git push -u origin main 
+
+        Para subir otras ramas 
+            Crear la rama en GITHUB.
+            Movemos a la rama y hacemos push
+                git checkout BranchName
+                git push - u origin BranchName
+
+    ---------------------------------------------------------------------------
+    key SSH
+    ---------------------------------------------------------------------------
+        Escribir la key                                         
             Click en flecha a lado de foto perfil
             Ir a Settings
             ir a developer settings 
@@ -45,16 +69,6 @@
                 Note - Escribir nombre
                 Scope - selecionar repo
                 Click Generate token
-    
-    Git push (**)
-    Al crear el repositorio remoto, no hay ramas remotas. Por lo que el primer push crea la primera Rama main remota.
-        git push -u origin main 
-    
-    Cada push solo se sube una rama. POr si queremos seguimiento a otra rama creada en Git, debemos crear la rama en GITHUB.
-    Por lo que nos movemos a la rama y la subimos
-        git checkout BranchName
-        git push - u origin BranchName
-
 
     ---------------------------------------------------------------------------
     TAGS
@@ -72,7 +86,7 @@
     ---------------------------------------------------------------------------
 
     Clone
-    Clonar todo el proyecto desde tu repositorio GitHub a tu git en tu computadore
+        Clonar todo el proyecto desde tu repositorio GitHub a tu git en tu computadore
         Instrucciones:
             Click en boton verde vCode
             Copiar Url proporcionado
@@ -80,8 +94,8 @@
             git clone https://url.git 
 
     Fork
-    Clonar todo el proyecto de un repositorio ajeno y colaborar. 
-    Permite realizar PullRequest. Avisar al dev ajeno que puede ver, revisar, comparar, rechazar o finalmente jalar tu version del projecto.
+        Clonar el proyecto de un repositorio ajeno. Permite colaborar con otros Devs. 
+        PullRequest. Propone a Dev propietario tu modificaion. (puede ver, comparar, rechazar o jalar tu version a su projecto).
         Instrucciones:
             Ingreso a projecto de GitHub externo
             Click en fork (download instantaneo a tu GitHub)
