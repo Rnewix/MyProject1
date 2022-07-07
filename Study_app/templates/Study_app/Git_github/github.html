@@ -15,12 +15,15 @@
 
 
     git push                                                Sube commits de Repositio local (git) a Repositorio Remoto (GitHub)
+    git push origin master
     git push -u origin BranchName                           Crea nueva rama en github y sube los commits desde Git a esa rama en github 
     
     git fetch                                               Trae cambios desde Github a repositorio local (git)  (subidos por el equipo o nuestros desde otra pc)
     git merge                                               Combina cambios descargados a git(repositorio) con nuestro Directorio (PC)
-    git pull                                                Trae cambios desde Github, modifica a git y modifica el Directorio (PC))
-                                                            git fetch + git merge
+    git pull origin master                                  Trae cambios desde Github, modifica a git y modifica el Directorio (PC)) (git fetch + git merge)
+    git pull origin master --allow-unrelated-histories      Permite unir dos projetos si hay confictos por ser completamente diferentes 
+                                                                (ej. git hub: abc.html abc.css  y  git: dfg.js dfg.py)
+                                                                
 
     git tag NombreTag -m "comentario de Tag"                Crear tag.     
     git push tags                                           Sube tag a Github
