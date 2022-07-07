@@ -90,6 +90,8 @@ Comandos GIT
     git log --all --graph                                       Ramas representadas graficamente
     git log --all --graph --decorate --oneline                  Ramas representadas graficamente comprimido
 
+    gitk                                                        Visualizador grafico de commits y de ramas
+
 ----------Volver en el tiempo ------------------
 ------------------------------------------------------------------------
 Posibilidad de volver al futuro.
@@ -170,7 +172,7 @@ Ramas                           HEAD - indica la posicuin de en que rama y commi
     git checkout -b BranchName                                  Crear rama y te mueves a ella
 
 
-    git merge BranchName                                        Mezcla ramas. Combina una rama seleccionada a la rama donde esta el HEAD.
+    git merge BranchNameExterna                                 Mezcla ramas. Combina una rama seleccionada a la rama donde esta el HEAD.
                                                                         (Osea a la Rama donde nos encontremos)
                                                                         (Crea un nuevo commit en la rama actual co el merge)
 

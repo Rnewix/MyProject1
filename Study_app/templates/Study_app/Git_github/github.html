@@ -16,7 +16,9 @@
 
     git push                                                Sube commits de Repositio local (git) a Repositorio Remoto (GitHub)
     git push origin master
-    git push -u origin BranchName                           Crea nueva rama en github y sube los commits desde Git a esa rama en github 
+    git push origin BranchName                              Crea nueva rama en github/ Sube la rama y sus commits a github 
+    git push -u origin BranchName
+    git push --force                                        Sube tu repositorio a la fuerza. Problema muy comun por git commit --amend donde cambias comentario del ultimo commit pero parece que el branch se dividio en dos commits diferentes (pero en realidad debe ser el mismo).
     
     git fetch                                               Trae cambios desde Github a repositorio local (git)  (subidos por el equipo o nuestros desde otra pc)
     git merge                                               Combina cambios descargados a git(repositorio) con nuestro Directorio (PC)
@@ -31,7 +33,7 @@
     git tag                                                 Muestra los tags
     git show-ref --tags                                     Muestra los tags y su url de referencia   
     git push origin --tags                                  Sube tag a Github
-    Eliminar Tags
+        Eliminar Tags
     -------------------
     1.- git tag -d NameTage                                 Elimina tag (repostorio local)
     2.- git push origin :refs/tags/NameTag                  Elimina tag en GitHub (le informamos)   
