@@ -26,11 +26,13 @@
                                                                 (ej. git hub: abc.html abc.css  y  git: dfg.js dfg.py)
                                                                 
 
-    git tag -a NameTag -m "coment" #commit                  Crear tag 
+    git tag NameTag -m "coment"                             Crear tag   --de ultimo commit                                                            
+    git tag -a NameTag -m "coment" #commit                  Crear tag   --de commit especifico 
     git tag                                                 Muestra los tags
-    git show-ref --tags                                     Muestra los tags y commit al que hace tag   
+    git show-ref --tags                                     Muestra los tags y su url de referencia   
     git push origin --tags                                  Sube tag a Github
     Eliminar Tags
+    -------------------
     1.- git tag -d NameTage                                 Elimina tag (repostorio local)
     2.- git push origin :refs/tags/NameTag                  Elimina tag en GitHub (le informamos)   
     
