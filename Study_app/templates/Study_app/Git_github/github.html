@@ -21,16 +21,23 @@
     git fetch                                               Trae cambios desde Github a repositorio local (git)  (subidos por el equipo o nuestros desde otra pc)
     git merge                                               Combina cambios descargados a git(repositorio) con nuestro Directorio (PC)
     git pull origin master                                  Trae cambios desde Github, modifica a git y modifica el Directorio (PC)) (git fetch + git merge)
+    git pull   
     git pull origin master --allow-unrelated-histories      Permite unir dos projetos si hay confictos por ser completamente diferentes 
                                                                 (ej. git hub: abc.html abc.css  y  git: dfg.js dfg.py)
                                                                 
 
-    git tag NombreTag -m "comentario de Tag"                Crear tag.     
-    git push tags                                           Sube tag a Github
+    git tag -a NameTag -m "coment" #commit                  Crear tag 
+    git tag                                                 Muestra los tags
+    git show-ref --tags                                     Muestra los tags y commit al que hace tag   
+    git push origin --tags                                  Sube tag a Github
+    Eliminar Tags
+    1.- git tag -d NameTage                                 Elimina tag (repostorio local)
+    2.- git push origin :refs/tags/NameTag                  Elimina tag en GitHub (le informamos)   
+    
 
-    git clone https://url.git                               Clonar repositorio (en Github) a una computadora (guarda a Git BASH). 
-                                                            URL obtenida desde Github boton Code
+    git clone https://url.git                               Clonar repositorio (en Github) a una computadora. URL obtenida desde Github
 
+    git remote -v                                           ver conexion con github. Ver manera de conexion: Via https o Via llave SSH
 
 
     ---------------------------------------------------------------------------
@@ -44,7 +51,7 @@
         Click en Create Repository
 
     Subir repositorio (Git local) a GIT HUB
-        Copiar las instruccions GitHub:                         git remote add          
+        Copiar las instruccions GitHub:                                   
         Pegarla en la Terminal                                  (Indica a Git (local) un servidor Remoto (URL del servidor))
         **Hacer Push                                              
         Escribir usuario                                        Usuario de log in
@@ -60,18 +67,62 @@
                 git checkout BranchName
                 git push - u origin BranchName
 
-    ---------------------------------------------------------------------------
-    key SSH
-    ---------------------------------------------------------------------------
-        Escribir la key                                         
+    --------------------------------------------------------------------------------------------------------------
+    key SSH                         SSH protocolo mas seguro que HTTPS. Crear llave privada para cada PC/Repositorio local
+    ----------------------------------------------------------------------------------------------------------------------
+        1.- Generar ssh key
+            https://docs.github.com/es/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
+                Terminal home/        
+                    ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+                    >Enter
+                    Guardaran en /.shh
+                    >Enter                                      (se puede sobreagregar una contrasena para mayor seg. Sino solo enter)
+                    >Enter
+
+                id_rsa                  llave privada.
+                id_rsa.pub              llave pública.
+
+        2.- Corroborar (windows/linux) que gestor de llaves esta funcionando   
+                eval $(ssh-agent -s)
+        
+        3.- Agregar la llave
+                ir a /.shh
+                ssh-add ~/.ssh/id_rsa
+
+        
+        4.- Copiar a Server (GitHub)
+            -Abrir id_rsa.pub (cat, less, VSC)       ej.  cat ~/.ssh/id_rsa.pub
+                -Copiar el contenido
+
+            -GitHub
+                -Settings
+                    -SSH and GPG keys
+                        -New SSH key
+                            -Title: Nombre representativo del equipo al que se conecta
+                            -key: Pegar la llave id_rsa.pub
+                                Anadir y guardar
+        5.- Cambiar manera de conexion Un projecto/repositorio (https a ssh)
+                GitHub
+                    Entrar al Repositorio (projecto)
+                    clone or download
+                            Clone wit SSH (click Use SSH)
+                                Copiar URL git@github.com:...
+                PC
+                    Ir a projecto (repositorio)
+                            Coroborar estado actual de conexion. (git remote -v)
+                        Cambia a ssh
+                            git remote set-url origin (URL GitHub)
+
+        ---------------------------------------------------------------------
+        Generar Tokens                                         
             Click en flecha a lado de foto perfil
-            Ir a Settings
-            ir a developer settings 
-            Click Personal access tokens
-            Click Generate new token
-                Note - Escribir nombre
-                Scope - selecionar repo
-                Click Generate token
+            Ir a  -Settings
+                    -Developer settings 
+                      -Personal access tokens
+                        -Generate new token
+                            Note - Escribir nombre
+                            Scope - selecionar repo
+                  Click Generate token
 
     ---------------------------------------------------------------------------
     TAGS

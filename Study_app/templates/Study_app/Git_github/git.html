@@ -42,6 +42,7 @@ Configuracion
     git config --global -e                                          Ver la configuracion de GIT
 
     git config --list                                               Muestra la configuracion actual
+    git config -l                                                   ""          ""              ""
 
     (Windows) git config --global core.autocrlf true                Windows true. Linux/Mac input. CR-Carriage Return LR- Line Feed
 
@@ -78,13 +79,16 @@ Comandos GIT
     .                                                                A Agregado staging area
     .                                                                M Modificado
 
-    git log                                                     Listado de todos los commits 
+    git log                                                     Listado de los commits 
                                                                     Q = exit
-    git log --oneline                                           Listado id commit y comentario del commit.
+    git log --all                                               Todos los commits (tuyos y ajenos)
+    git log --oneline                                           Listado id commit y comentario del commit (comprimidos).
     git log --decorate                                          Muestra donde esta el Head
     git log --stat                                              Listado de todos los commits especificando cantidad de cambios
-    git log --graph                                             Listado de las ramas
-
+    git log --graph                                             Listado con lineas de colores que muestra las ramas
+    
+    git log --all --graph                                       Ramas representadas graficamente
+    git log --all --graph --decorate --oneline                  Ramas representadas graficamente comprimido
 
 ----------Volver en el tiempo ------------------
 ------------------------------------------------------------------------
@@ -166,8 +170,26 @@ Ramas                           HEAD - indica la posicuin de en que rama y commi
     git checkout -b BranchName                                  Crear rama y te mueves a ella
 
 
-    git merge BranchName                                        Mezcla esa rama con la rama en la que estás
+    git merge BranchName                                        Mezcla ramas. Combina una rama seleccionada a la rama donde esta el HEAD.
+                                                                        (Osea a la Rama donde nos encontremos)
+                                                                        (Crea un nuevo commit en la rama actual co el merge)
 
+    Conflictos merge
+    ---------------------------------------------------------
+    El merge se hace incompleto. 
+    Se Crea Commit agrega normalmente los cambios sin conflicto, y en las zonas con conflicto grava las dos 
+    versiones de codigo. La rama a cambia a rama/merging hasta la solucion de los conflictos. 
+        
+        >>>>>>>>>Rama principal (actual)
+                Codigo codigode rama principal
+        ==================
+                Codigo codigo rama incoming
+        >>>>> Rama incoming (incoming)
+
+    VSC te da opcion interactiva para borrar etiquetas y dejar el codigo deseado
+    Sino hay que borrar manualmente las etiquetas >>> , ==== y seleccionar codigo deseado (o cambiarlo por uno completamente diferente)
+
+    Al final hay que volver a hacer un segundo nuevo commit indicando que resolviste los conflictos.
 
 
 
