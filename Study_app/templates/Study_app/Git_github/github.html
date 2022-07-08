@@ -22,9 +22,9 @@
     
     git fetch                                               Trae cambios desde Github a repositorio local (git)  (subidos por el equipo o nuestros desde otra pc)
     git merge                                               Combina cambios descargados a git(repositorio) con nuestro Directorio (PC)
-    git pull origin master                                  Trae cambios desde Github, modifica a git y modifica el Directorio (PC)) (git fetch + git merge)
+    git pull origin main                                    Trae cambios desde Github, modifica a git y modifica el Directorio (PC)) (git fetch + git merge)
     git pull   
-    git pull origin master --allow-unrelated-histories      Permite unir dos projetos si hay confictos por ser completamente diferentes 
+    git pull origin main   --allow-unrelated-histories      Permite unir dos projetos si hay confictos por ser completamente diferentes 
                                                                 (ej. git hub: abc.html abc.css  y  git: dfg.js dfg.py)
                                                                 
 
@@ -33,15 +33,19 @@
     git tag                                                 Muestra los tags
     git show-ref --tags                                     Muestra los tags y su url de referencia   
     git push origin --tags                                  Sube tag a Github
-        Eliminar Tags
+    Eliminar Tags
     -------------------
-    1.- git tag -d NameTage                                 Elimina tag (repostorio local)
-    2.- git push origin :refs/tags/NameTag                  Elimina tag en GitHub (le informamos)   
+        1.- git tag -d NameTage                                 Elimina tag (repostorio local)
+        2.- git push origin :refs/tags/NameTag                  Elimina tag en GitHub (le informamos)   
     
 
     git clone https://url.git                               Clonar repositorio (en Github) a una computadora. URL obtenida desde Github
 
     git remote -v                                           ver conexion con github. Ver manera de conexion: Via https o Via llave SSH
+
+
+
+
 
 
     ---------------------------------------------------------------------------
@@ -144,30 +148,54 @@
     ---------------------------------------------------------------------------
 
     Clone
-        Clonar todo el proyecto desde tu repositorio GitHub a tu git en tu computadore
+        Clonar repositorio GitHub a una computadora
         Instrucciones:
-            Click en boton verde vCode
+            Click en boton verde Clonar
             Copiar Url proporcionado
-            Abrir Git Bash y colocarte en carpeta a clonar
-            git clone https://url.git 
+            En terminal colocarte en donde quieres descargar el repositorio
+                git clone https://url.git 
 
     Fork
-        Clonar el proyecto de un repositorio ajeno. Permite colaborar con otros Devs. 
+        Clonar un repositorio ajeno. Permite colaborar con otros Devs. 
         PullRequest. Propone a Dev propietario tu modificaion. (puede ver, comparar, rechazar o jalar tu version a su projecto).
+
         Instrucciones:
             Ingreso a projecto de GitHub externo
-            Click en fork (download instantaneo a tu GitHub)
-            Hacer Clonacion e iniciar su manipulacion
+            Click en fork (Se copia a tu GitHub)
+            Clonar de tu GitHub a tu PC.
+                (seguir los pasos de Clone (arriba))
 
         Hacer PullRequest
-            En projecto click en Pull Request
-            click en New PullRequest
-            click en creat PullRequest
+            Verificar tus cambios subidos a GitHub
+            Click en Pull Request
+                click en New PullRequest
+                    click en create PullRequest
 
         Aceptar un PullRequest
             click en Pull Request(1)
             --REvisar Modificacion click in Files changed(99)
-            --Click REview changes: Chat, opciones (comment(comnetario sin aceptar), approve (merge), request changes)
+            --Click Review changes: Chat, opciones (comment(solo comenta en el chat sin aceptar), approve (merge), request changes)
 
+    Seguimiento de projecto Fork
+        Si no se hace, se tiene que Forkear el repositorio ajeno cada vez que se desee ver cambios hechos por su autor. 
+        (ya que en Github tenemos una copia de ese Fork, y solo actualiza los push nuestros, no sabemos los cambios en repositorio ajeno)
+
+        En Git Hub
+        ---------------------
+            Repository (this branch is XX commits BEHIND RepositoryAjeno: main) 
+                Click compare (Debajo de boton verde Clone)
+                    Click switching the base
+                        Click boton verde Create pull request
+                            Haceer merge al repositorio que tienes en tu Git Hub
+        
+        En Terminal
+        -----------------------
+            Crear rama que siga los cambios del repositorio ajeno
+            Ir al gitHub externo/repositorio ajeno
+                Click boton verde clone
+                    Copiar URL
+                        git remote add upstream URL           (el lugar de llamarlo origin -> lo llamaremos upstream)
+                            git pull upstream main            (pull de de rama upstream (git externo) a main en git)
+                                Guardar actualizaciones con commit y actualizar GitHub pusheando nuestro main.
 </body>
 </html>

@@ -20,6 +20,8 @@
     -Repository/Commit                          Zona de guardado de GIT. (Guardado como versiones) 
     -Repositorio Remoto                         Guardado ya en la nuve (GITHUB, etc.)
 
+    -Stash                                      Area guardado temporal
+
 
                             Comandos
 ---------------------------------------------------------------------------
@@ -92,6 +94,8 @@ Comandos GIT
 
     gitk                                                        Visualizador grafico de commits y de ramas
 
+    git reflog                                                  Listado de todas las acciones en orden, donde se encontraba el head y los #commit, etc.
+
 ----------Volver en el tiempo ------------------
 ------------------------------------------------------------------------
 Posibilidad de volver al futuro.
@@ -146,13 +150,18 @@ SIN posibilidad de volver al futuro.
 ---------------------------------------------------------------------------
 Evitar commit accidental de Archivo
 ---------------------------------------------------------------------------
-    .gitignore      Evita uardar en git archivos 
+    .gitignore      Evita Guardar en git archivos 
                         (ej. datos de venv, ya que solo funcionan en nuestra pc)
 
                     Pasos
                         1 Crear en carpeta del proyecto archivo con nombre .gitignore 
                         2 Abrirlo (VSC) y escribir rutas de archivos/carpetas a ignorar
-                            (ej.  venv/)
+                            (ej.  venv/  *.png  *.jpg  etc)
+        
+        Razones de uso
+            Es un archivo con contraseñas (normalmente con la extensión .env)
+            Es un blob (binary large object, objeto binario grande), mismos que son difíciles de gestionar en git.
+            Son archivos que se generan corriendo comandos, por ejemplo la carpeta node_modules, que genera npm al correr el comando npm install
 
 
 
@@ -196,7 +205,63 @@ Ramas                           HEAD - indica la posicuin de en que rama y commi
 
 
 
+---------------------------------------------------------------------------
+Stash            
+---------------------------------------------------------------------------
+                Area donde puedes almacenar temporalmente una captura de tus cambios sin enviarlos al repositorio.
+                Util cuando has hecho cambios en una rama que no estas listo para realizarle commit, 
+                    pero necesitas cambiar a otra rama.
+    git stash                                                   Guarda cambios a Stash. Revierte el directorio de trabajo al último commit.
+                                                                (Archivos modificados o eliminados) Disponibles en cualquier rama del repositorio.   
+    git stash -u                                                Crea un stash con todos los archivos. 
+                                                                (icluye los Untracked)    
+    git stash save "msj_opcional" 
 
+    git stash list                                              Ver lista de lo guardado en Stash.
+                                                                    stash@{<num_stash>} 
+                                                                    stash@{<num_stash>} 
+
+    git stash show StashName                                    Ver version guardada en ese stash
+    git stash show -p StashName                                 Ver version guardada en ese stash como diff
+
+    git stash apply stash@{<num_stash>}                         Aplica cambios y deja copia en Stash    
+    git stash apply                                             Aplica cambios y deja copia del ultimo Stash    
+    git stash pop stash@{<num_stash>}                           Aplica cambios y elimina copia en Stash
+    git stash pop                                               Aplica cambios y elimina copia del ultimo Stash
+    git stash branch BramchName stash@{<num_stash>}             Crea rama aplcando stash especifico
+
+    git stash drop stash@{<num_stash>}                          Elimina copia en Stash  
+    git stash clear                                             Limpia todo el Stash area
+
+
+
+---------------------------------------------------------------------------
+Clean          
+---------------------------------------------------------------------------    
+    git clean --dry-run                                         Muestra archivos no trackeados que eliminara
+    git clean -f                                                Elimina archivos no trackeados 
+                                                                    (excepto carpetas y lo ignorado por .gitignore)
+    git clean -fd                                               Elimina archivos y Carpetas no trackeados 
+                                                                    (excepto carpetas y lo ignorado por .gitignore)
+
+
+---------------------------------------------------------------------------
+Rebase                                      Mala practica
+---------------------------------------------------------------------------
+                Unir los commits de dos ramas diferentes como si fueran una sola. 
+                Hace merge forzado al codigo conflictivo manteniendo el codigo de ambas ramas
+                Evitar. Mala practica por reconsturi la historia. No deja registro de existencia de un rama previa.
+
+
+
+---------------------------------------------------------------------------
+Cherry-pick                                 Mala practica          
+---------------------------------------------------------------------------    
+                Permite hacer merge solo de commits especifico de cualquier rama de cualquier tiempo a otra rama.
+                Commit(S) se agregaran a la rama como si fuera commit de ella, hace add-commit instantaneo.
+                Mala practica por reconstruir la historia. Finge un commit de una rama cuando fue hecha en otra rama. 
+    
+    git cherry-pick #commit                                 Merge se un commit especifico de otra rama hacia en la rama en donde estamos.
 
 
 </body>
