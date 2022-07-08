@@ -64,22 +64,25 @@ Comandos GIT
     git commit                                                  File de Staging area a Repositorio local. ///Abre editor para agregar comentario. Salir Esc + shift + z + z 
     git commit -m "Comentario del commit"                       Commit con comentario. 
     git commit -am "Comentario del commit"                      git add + git commit -m     (Directorio (PC) -> Repositorio local (Git))
-    git commit --amend                                          Corregir Comentario del commit. (Editor VIM)
-    .                                                               :i   ENTER  Cualquier tecla --> Permite editar
-    .                                                               Suprimir----------------------> Borrar comentario
-    .                                                               Esc---------------------------> Salir (guardando)
-    .                                                               :i   ENTER -------------------> Permite edicion. Escribir comentario
-    .                                                               ENTER  -----------------------> Ingresa
-    .                                                               Esc---------------------------> Salir (guardando)
-    .                                                               :wq---------------------------> Salir de editor y guardar
+    git commit --amend                                          Corregir Comentario del commit y/o anexar cambio no agregado. 
+                                                                (Cambio debe de subirse a Staging area(add) antes de hacer --amend) 
+                                                                    ||
+                                                                    (Editor VIM)
+                                                                    :i   ENTER  Cualquier tecla --> Permite editar
+                                                                    Suprimir----------------------> Borrar comentario
+                                                                    Esc---------------------------> Salir (guardando)
+                                                                    :i   ENTER -------------------> Permite edicion. Escribir comentario
+                                                                    ENTER  -----------------------> Ingresa
+                                                                    Esc---------------------------> Salir (guardando)
+                                                                    :wq---------------------------> Salir de editor y guardar
 
     git status                                                  Refleja todos los files y su estado de seguimiento/commit Y la RAMA
     git status -s                                               Refleja resumidamente estado de las carpetas
-    .                                                                ?? no segimiento   
-    .                                                                RED no seguimiento  
-    .                                                                Green En seguimiento
-    .                                                                A Agregado staging area
-    .                                                                M Modificado
+                                                                     ?? no segimiento   
+                                                                     RED no seguimiento  
+                                                                     Green En seguimiento
+                                                                     A Agregado staging area
+                                                                     M Modificado
 
     git log                                                     Listado de los commits 
                                                                     Q = exit
@@ -95,6 +98,17 @@ Comandos GIT
     gitk                                                        Visualizador grafico de commits y de ramas
 
     git reflog                                                  Listado de todas las acciones en orden, donde se encontraba el head y los #commit, etc.
+
+----------Busqueda avanzada en Git---------------   
+    git grep LoQueBuscamos                                      Busca coincidencias en archivos tracked dentro de la rama en la que nos localizamos.
+                                                                    Incluye conicidencias dentro de palabras mas largas.
+                                                                    Muestra archivo / linea con la coincidencia 
+    git grep -n LoQueBuscamos                                       Muestra archivo / #linea / linea                  
+    git grep -c LoQueBuscamos                                       Muestra archivo / Cantidad de veces usada en ese archivo
+
+    git log -S "LoQueBuscamos"                                      Busca coincidencia en el historial de commits
+
+
 
 ----------Volver en el tiempo ------------------
 ------------------------------------------------------------------------
@@ -171,6 +185,8 @@ Ramas                           HEAD - indica la posicuin de en que rama y commi
 ---------------------------------------------------------------------------
 
     git branch                                                  Muestra la rama en la que estamos
+                                                                    -r Las ramas repositorio remoto (github) (color ROJO)
+                                                                    -a todas las ramas (repositorio local y remoto)
     
     git branch BranchName                                       Crear rama
     git branch -m BranchName NewBranchName                      Renombrar rama

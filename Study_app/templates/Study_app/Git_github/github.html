@@ -33,17 +33,24 @@
     git tag                                                 Muestra los tags
     git show-ref --tags                                     Muestra los tags y su url de referencia   
     git push origin --tags                                  Sube tag a Github
-    Eliminar Tags
-    -------------------
-        1.- git tag -d NameTage                                 Elimina tag (repostorio local)
-        2.- git push origin :refs/tags/NameTag                  Elimina tag en GitHub (le informamos)   
+    git tag -d NameTage                                     Elimina tag (repostorio local)
+    git push origin :refs/tags/NameTag                      Elimina tag en GitHub (le informamos)   
     
 
-    git clone https://url.git                               Clonar repositorio (en Github) a una computadora. URL obtenida desde Github
+    git clone URL                                           Clonar repositorio (en Github) a una computadora. URL obtenida desde Github
 
     git remote -v                                           ver conexion con github. Ver manera de conexion: Via https o Via llave SSH
 
+    git shortlog                                            Muestra que commit y la cantidad de commits hecos por cada usuario
+    git shortlog -s                                         Numero de Commits de cada Usuario        
+    git shortlog -sn                                        Numero de Commits de cada Usuario (mayor a menor)
+    git shortlog -sn --all
+    git shortlog -sn --all --no-merges                      Numero de Commits de cada Usuario excluyendo merges
 
+    git blame RelativeURL                                   Muestra los autores de cada linea de un file.
+                                                                -c          Le da mejor aspecto 
+                                                                -L150,160   Especifica los autores de lineas especificas.
+  
 
 
 
