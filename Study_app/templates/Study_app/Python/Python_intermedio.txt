@@ -1,0 +1,161 @@
+
+List comprehensions
+Dictionary comprehensions
+Funcion anonima                         Lambda
+High order functions                     map(), reduce(), filter()
+
+
+-------------------------------------------------------
+List comprehensions  
+-------------------------------------------------------
+                        Crea una lista basada en otra, en una única linea legible
+
+
+lista = [element for element in iterable if condition]
+
+            list = []       Lista
+            element         Output. Elemento a integrarse a la lista
+            for element in iterable
+                            Input. Ciclo para extraer elementos de lista (o iterable)
+            if condition    Condicion (ocional)
+
+
+                    Ejemplos
+                    -----------------------------------------------------------------
+                    Lista de numero del 1 al 100 al cuadrado con excepcion de los divisibles entre 3.
+                        squares = [1**2 for i in range (1,101) if i % 3 != 0]
+
+                    Lista de la longitud de cada palabra en una frase, sin la palabra "el"
+                        sentencia = "el rápido zorro marrón salta sobre el perro perezoso"
+                        palabras = sentencia.split()
+                        longitud_palabras = [len(palabra) for palabra in palabras if palabra != "el"]
+    
+
+-------------------------------------------------------
+Dictionary comprehensions  
+-------------------------------------------------------
+                        Crear un diccionario basada en un iterable, en una única linea legible
+
+
+dictionary = [key:value for element in iterable if condition]
+
+            dictionary = {} Diccionarion
+            Key: Value      Output. Elementos a integrarse al diccionario
+            for element in iterable
+                            Input. Ciclo para extraer elementos del iterable
+            if condition    Condicion (ocional)
+
+
+                    Ejemplos
+                    -----------------------------------------------------------------
+                    Dicionario con valores de numero del 1 al 100 al cuadrado con excepcion de los divisibles entre 3.
+                        diccionario = {i:i**2 for i in range(1, 101) if i % 3 != 0}
+
+
+
+-------------------------------------------------------
+Lambda              Funciones anonimas 
+-------------------------------------------------------
+                        Funciones sin nombre. Sin llamada.
+                        Una única linea
+                        Activacion automatica
+                        Un resultado inmediato. No return
+                        Dentro de variables como un objeto, se activa invocando esta variable con los argumentos entreparentesis.
+        
+
+variable = lambda argumentos: expresion
+
+                    Ejemplos
+                    -----------------------------------------------------------------
+                    cuadrado = lambda x: x**2
+                    print(cuadrado(3))
+                    .................................................................
+                    def multiplicacion (n):
+                        return lambda multipli_veces: multipli_veces * n
+
+                    doble= multiplicacion(2)
+                    triple= multiplicacion(3)
+                    cuadruple= multiplicacion(4)
+
+                    print(doble(7))
+                    print(triple(8))
+                    print(cuadruple(6))
+
+
+-------------------------------------------------------
+High order functions                     map(), reduce(), filter()
+-------------------------------------------------------
+                        Funciones que reciben como parametro otra funcion
+
+.                    
+                    Ejemplos
+                    -----------------------------------------------------------------
+                    def saludar(funcion):
+                        funcion()
+                    def hola():
+                        print("hola, como estas?")
+                    def adios():
+                        print("adion, hasta luego")
+
+                    saludar(hola)
+                    saludar(adios)
+
+
+    map
+    ..........................................................
+                        Funcion que le aplica a cada elemento de un iterable una funcion 
+                        Hace auto append de todos los resultados y regresa lista.
+                            (Como regresa lista como Objeto -> convertir con  list(), tuple(), etc.)
+
+    map(funcion, iterable)
+                     
+                        Ejemplos
+                        -----------------------------------------------------------------
+                        lista=[1,2,3,4]
+                        square = map(lambda x:x**2, lista)
+                        print(list(square))
+
+                        lista= [1,2,3,2]
+                        numero=list(map(lambda x: x == 2, lista))
+                        print(numero)
+                        >>> [False, True, False, True]
+
+
+    filter
+    ..........................................................
+                        Funcion que le aplica a cada elemento de un iterable una funcion 
+                        Filtra los False, y regresa una lista con solo los True
+                            (Como regresa lista como Objeto -> convertir con  list(), tuple(), etc.)
+
+    filter(funcion, iterable)
+                       
+                        Ejemplos
+                        -----------------------------------------------------------------
+                        lista=[1,2,3,4]
+                        pares = filter(lambda x:x**2 != 0, lista)
+
+                        print(list(pares))
+
+                        lista= [1,2,3,5,2,2,3,2]
+                        numero=list(filter(lambda x: x == 2, lista))
+                        print(numero)
+
+
+    reduce
+    ...........................................................
+                        Hace el calculo acumulativo de la aplicacion de una funcion a todos los elementos de un iterable.
+                        Toma 2 elementos del iterable, aplica la funcion, toma ese resultado y el siguiente elemento y le aplica la funcion. 
+                            Asi sucesivamente hasta acabar los elemetos del iterable.
+                        Reduce incluido en modulo functools.
+                        A diferencia de map() y filter(), resultado regresa puro (no se vuelve objeto)
+
+    reduce(funcion, iterable)
+                    
+                        Ejemplos
+                        -----------------------------------------------------------------
+                        from functools import reduce
+
+                        lista=[1,2,3,4]
+                        suma_total = reduce(lambda x,y: x+y, lista)
+
+                        print(suma_total)
