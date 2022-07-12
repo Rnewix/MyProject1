@@ -2,8 +2,10 @@
 List comprehensions
 Dictionary comprehensions
 Funcion anonima                         Lambda
-High order functions                     map(), reduce(), filter()
-
+High order functions                    map(), reduce(), filter()
+Errors and debugging      
+Manejo de excepciones			try, except, else, finally, raise, assert
+Crear excepciones     			class Exception
 
 -------------------------------------------------------
 List comprehensions  
@@ -37,7 +39,7 @@ Dictionary comprehensions
                         Crear un diccionario basada en un iterable, en una única linea legible
 
 
-dictionary = [key:value for element in iterable if condition]
+dictionary = {key:value for element in iterable if condition}
 
             dictionary = {} Diccionarion
             Key: Value      Output. Elementos a integrarse al diccionario
@@ -83,10 +85,10 @@ variable = lambda argumentos: expresion
 
 
 -------------------------------------------------------
-High order functions                     map(), reduce(), filter()
+High order functions                   HOF and  map(), reduce(), filter()
 -------------------------------------------------------
                         Funciones que reciben como parametro otra funcion
-
+HOF
 .                    
                     Ejemplos
                     -----------------------------------------------------------------
@@ -159,3 +161,178 @@ High order functions                     map(), reduce(), filter()
                         suma_total = reduce(lambda x,y: x+y, lista)
 
                         print(suma_total)
+                        
+
+
+-------------------------------------------------------
+Errors and debugging                    
+-------------------------------------------------------
+
+	Python avisa	-	Manejarlos
+	Python no avisa	-	Buscarlos y manejarlos (Debugging)
+                        
+   
+    Debugging			Python no Avisa		
+    .......................................................................
+		        Busqueda activa de mal comportamiento de un programa. 
+		        Donde Python no identifica error o hay error no contemplado, el programa continua, y hay resultado innesperado.
+    			Debugging: ir linea a linea viendo el proceso, las variables y resultado que va lanzando
+    
+    			 
+    Errores			Python Avisa	
+    ......................................................................
+    	SyntaxError		No corre el programa. Problema de sintaxis (typo)
+    	Exception		Corre el programa hasta la linea con el error (>50)
+    	
+    	    Traceback		Mensaje de Exception de python (Se leen de fin a principio)
+				||	Traceback (xxxxx):				||
+				||	   File <"file.py">, line #line, in <Module>	||
+				||	Exception: Exception description		||
+
+    
+	    Lista jerarquia de Exceptions
+	    ....................................Documentacion excepciones = https://docs.python.org/3/library/exceptions.html
+		BaseException  
+			 +-- SystemExit
+			 +-- KeyboardInterrupt
+			 +-- GeneratorExit
+			 +-- Exception
+			      +-- StopIteration
+			      +-- StopAsyncIteration
+			      +-- ArithmeticError
+			      |    +-- FloatingPointError
+			      |    +-- OverflowError
+			      |    +-- ZeroDivisionError
+			      +-- AssertionError
+			      +-- AttributeError
+			      +-- BufferError
+			      +-- EOFError
+			      +-- ImportError
+			      |    +-- ModuleNotFoundError
+			      +-- LookupError
+			      |    +-- IndexError
+			      |    +-- KeyError
+			      +-- MemoryError
+			      +-- NameError
+			      |    +-- UnboundLocalError
+			      +-- OSError
+			      |    +-- BlockingIOError
+			      |    +-- ChildProcessError
+			      |    +-- ConnectionError
+			      |    |    +-- BrokenPipeError
+			      |    |    +-- ConnectionAbortedError
+			      |    |    +-- ConnectionRefusedError
+			      |    |    +-- ConnectionResetError
+			      |    +-- FileExistsError
+			      |    +-- FileNotFoundError
+			      |    +-- InterruptedError
+			      |    +-- IsADirectoryError
+			      |    +-- NotADirectoryError
+			      |    +-- PermissionError
+			      |    +-- ProcessLookupError
+			      |    +-- TimeoutError
+			      +-- ReferenceError
+			      +-- RuntimeError
+			      |    +-- NotImplementedError
+			      |    +-- RecursionError
+			      +-- SyntaxError
+			      |    +-- IndentationError
+			      |         +-- TabError
+			      +-- SystemError
+			      +-- TypeError
+			      +-- ValueError
+			      |    +-- UnicodeError
+			      |         +-- UnicodeDecodeError
+			      |         +-- UnicodeEncodeError
+			      |         +-- UnicodeTranslateError
+			      +-- Warning
+				   +-- DeprecationWarning
+				   +-- PendingDeprecationWarning
+				   +-- RuntimeWarning
+				   +-- SyntaxWarning
+				   +-- UserWarning
+				   +-- FutureWarning
+				   +-- ImportWarning
+				   +-- UnicodeWarning
+				   +-- BytesWarning
+				   +-- EncodingWarning
+				   +-- ResourceWarning
+		    
+-------------------------------------------------------
+Manejo de excepciones                 
+-------------------------------------------------------    
+    try				Engloba codigo con posibilidad de error
+    except			Si ERROR en try, el progama NO se interrumpe, el bloque try no corre y corre este codigo.
+    else			(OPCIONAL) Si NO ERROR, corre este codigo. 
+    finally			(OPCIONAL) Independientemente siempre correra este codigo, incluso antes de pararse por el error. 
+   
+    raise			Alsa un error si se cumple una condicion que nosotros estipulamos. Lanzar errores que de manera nativa python no lo lanzaria.
+    assert                	Para validacion. Se da una afirmacion como condicion, si no se cumple levanta un AssertionError.
+   --------------------------------------------------------------------------------
+   
+		try:
+	   	    Codigo suceptible a error
+	   	except:
+		    Codigo si hay error
+		else:
+		    Codigo extra si no hay error
+		finally:
+		    Codigo que siempre se ejecuta.
+    
+    Except
+    -------------------------------------------------------------------------------
+    except:				Captura cualquier excepcion, inespecifico.    
+    except SyntaxError:			Captura solo excepcion especifico.
+    except Err1, Err2:			Captura multiples excepciones especificos
+    .........................
+    except SyntaxError:			Codigo a correr segun excepcion especifica
+    	Codigo1
+    except ValueError:
+    	Codigo2		
+    .........................
+    except Err as ErrName:		Renombrar excepcion, permite crear un alias al error.
+    					Exception es objeto, al renombrar podremos imprimir su __str__
+            
+            
+            
+    Raise
+    -------------------------------------------------------------------------------        
+    if condicion:			Raisea una excepcion si se cumple la condicion.
+    	raise Err ("mensaje"/parametro)
+    ..........................
+    try:				Raise dentro de un try.
+    	if condicion:		
+    	    raise Err1("msj")	
+    	codigo1_try
+    except Err1 as ErrName:		<--Exception es objeto, al renombrar podremos imprimir su __str__
+    	print(ErrName)
+    
+    				Ej. El ingresar lista vacia no causa error, pero nosotros la creamos
+				..............................................................................
+				  def palindrome(string):
+				  try:
+				    if len(string) == 0:
+				      raise ValueError('No se puede ingresar cadenas vacias')
+				    return string == string[::-1]
+				  except ValueError as ve:
+				    print(ve)
+				    return False   
+
+    Assert
+    -------------------------------------------------------------------------------
+    assert condicion			Si no se cumple raise AssertionError
+    assert condicion, "msj"		Si no se cumple raise AssertionError:"Msj"
+
+
+-------------------------------------------------------
+Crear excepciones                 	Generar nuestras propias excepciones.
+-------------------------------------------------------    
+					Se generan como una clase. Se sugiere ser simples y solo dar info de la exception.
+					Hereda de Clase padre Exception. Obtiene atributos para generar Traceback e interrumpir el Codigo
+					
+class NameErr(Exception):				-Clase
+    def __init__(self, parametro):			-Da posibilidad de recibir parametros de raise. (para hacer nice el mensajito)
+    	self.err_value = parametro			-Atributo con parametro de raise.                                        
+    def __str__(self): 					-Aparece en Traceback. (Solo str)	
+    	return "msj:" + " " + str(self.err_value)
+
