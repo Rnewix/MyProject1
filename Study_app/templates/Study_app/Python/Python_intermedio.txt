@@ -6,6 +6,11 @@ High order functions                    map(), reduce(), filter()
 Errors and debugging      
 Manejo de excepciones			try, except, else, finally, raise, assert
 Crear excepciones     			class Exception
+Persistencia de datos			r w x a r+ with open() 
+						.read() .readlines() .close() .seek() 
+						.write() .writeline()
+					rb wb xb ab rb+ .dump() .load()
+
 
 -------------------------------------------------------
 List comprehensions  
@@ -267,6 +272,7 @@ Manejo de excepciones
     finally			(OPCIONAL) Independientemente siempre correra este codigo, incluso antes de pararse por el error. 
    
     raise			Alsa un error si se cumple una condicion que nosotros estipulamos. Lanzar errores que de manera nativa python no lo lanzaria.
+    
     assert                	Para validacion. Se da una afirmacion como condicion, si no se cumple levanta un AssertionError.
    --------------------------------------------------------------------------------
    
@@ -318,10 +324,11 @@ Manejo de excepciones
 				    print(ve)
 				    return False   
 
-    Assert
+    Assert				Anidado en func() antes de return
     -------------------------------------------------------------------------------
     assert condicion			Si no se cumple raise AssertionError
-    assert condicion, "msj"		Si no se cumple raise AssertionError:"Msj"
+    assert condicion, "msj_de_err"	Si no se cumple raise AssertionError:"Msj"
+
 
 
 -------------------------------------------------------
@@ -335,4 +342,92 @@ class NameErr(Exception):				-Clase
     	self.err_value = parametro			-Atributo con parametro de raise.                                        
     def __str__(self): 					-Aparece en Traceback. (Solo str)	
     	return "msj:" + " " + str(self.err_value)
+    	
+    	
+    	
+    	
+    	
+-------------------------------------------------------
+Persistencia de datos                	Guardar, leer, escribir, anadir texto plano y ficheros binarios.
+-------------------------------------------------------        		
+    					FICHEROS: guardan datos en disco que podrán ser leídos posteriormente.
+    					2 tipos: de texto y binarios.
+    					
+    					OBJETO FILE: contiene fichero, manera en que Python los maneja. 
+    	
+					PUNTERO: Rayita | que parpadea. Siempre estara al principio. Si se algun metodo read
+					lo mueve a x posicion. Si se vuelve a usar metodo read, leera desde donde haya estado elpuntero.
+					    	
+
+
+    	
+    	with				Context manager/Manejador de texto. Equivale a try:/finally: .close()
+
+    	open() 				Crea objeto file. Modulo io.
+    	
+    						From io import open
+					    	with open("ruta.txt", "Modo_lectura") as nombre:
+						    codigo...
+						    					    
+	    	Modos de lectura
+	    	..........................
+	    	    f. texto								    
+			r	Read. 	  	    Opens a file for reading. 			Error if file does not exist			
+			w	Write/Overwrite	    (Open> Clean data> Ready for write). 	Creates the file if it does not exist		
+			a	Append. 	    Opens a file for appending.			Creates the file if it does not exist	
+			x	Create.Write   	    Creates the specified file. 		Error if exist	
+		----------------------------				
+			r+	Read. Possibility W					
+			w+	Write/Overwrite. Possibility r			
+			a+	Append. Possibility r 				
+	
+		
+		encoding="utf-8"	Parametro extra en open(). Evita errores y caracteres extraños (sucede con ñ, tilde,etc)
+		
+						with open("ruta.txt", "r", encoding="utf-8") as f:
+						   
+						    
+						    
+								
+	Metodos utiles
+	--------------------------------------------------------------------------							
+    	.read()				Lee objeto file y lo vuelve string. Recomendado vaciar a una variable. 
+					Saltos de linea aplicados (No muestra \n). 
+					PUNTERO: hasta el final
+					MODO DE LECTURA: r, w+, a+
+
+						From io import open
+						with open('file.txt', 'r') as f:
+					    	    f.read()					
+					    		
+					    			
+	.read(#)	 		Lee # de bytes especificados. Al repetirse, continuara con los siguientes #bytes.
+					PUNTERO: hasta el # de bytes
+					
+	.readline()	 		Crea lista del texto. 
+					Cada linea es valor(tipo str)(incluyen \n)
+					    ["linea1\n", "l2\n", "l3\n", "lFinal"] 
+					PUNTERO: hasta el final
+
+	.seek(#)			Coloca el puntero en el indice indicado
+
+	
+	.write()			Escribir en fichero. Contenido debe ser string (No contenedores). Salto de linea \n
+					Multiples write, concatenara texto (pero sin espacio).
+					MODO DE LECTURA: w, a, x, r+
+					
+						From io import open
+						with open('file.txt', 'a') as f:
+						    f.write('str')
+
+	    
+	.writeline()			Escribir en fichero. Acepta Contenedores con valores str. 
+					Valores unidos sin espacios. Diccionario copia solo keys.
+					
+
+	.close() 			Guarda y cierra fichero abierto por open(). (NO necesario con with)
+						
+	del(var)			Borrar variable usada durante el manejo del fichero
+
+
 
